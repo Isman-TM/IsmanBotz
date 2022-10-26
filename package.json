@@ -25,7 +25,6 @@
     "@adiwajshing/keyed-db": "^0.2.4",
     "awesome-phonenumber": "^2.64.0",
     "axios": "^0.24.0",
-    "@bochilteam/scraper":"^3.0.0",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
     "child_process": "^1.0.2",
@@ -64,10 +63,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xavior88/Botgia.git"
+    "url": "git+https://github.com/Isman-TM/IsmanV2.git"
   },
   "bugs": {
-    "url": "https://github.com/Xavior88/Botgia/issues"
+    "url": "https://github.com/Isman-TM/IsmanV2/issues"
   },
-  "homepage": "https://github.com/Xavior88#readme"
+  "homepage": "https://github.com/Isman-TM#readme"
 }

@@ -14,9 +14,34 @@ const { JSDOM } = require('jsdom')
 const speed = require('performance-now')
 const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
-const { youtubedl, youtubedlv2, tiktokdlv3} = require('@bochilteam/scraper')
 const primbon = new Primbon()
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins } = require('./lib/myfunc')
+
+const hariini = moment.tz('Asia/Jakarta').format('dddd, DD MMMM YYYY')
+const barat = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+const tengah = moment.tz('Asia/Makassar').format('HH:mm:ss')
+const timur = moment.tz('Asia/Jayapura').format('HH:mm:ss')
+
+//TIME
+const time2 = moment().tz('Asia/Makassar').format('HH:mm:ss')  
+ if(time2 < "23:59:00"){
+var ucapanWaktu = 'Selamat Malam 🌌'
+ }
+ if(time2 < "19:00:00"){
+var ucapanWaktu = 'Selamat Sore 🌃'
+ }
+ if(time2 < "18:00:00"){
+var ucapanWaktu = 'Selamat Sore 🌅'
+ }
+ if(time2 < "15:00:00"){
+var ucapanWaktu = 'Selamat Siang 🏙'
+ }
+ if(time2 < "11:00:00"){
+var ucapanWaktu = 'Selamat Pagi 🌄'
+ }
+ if(time2 < "05:00:00"){
+var ucapanWaktu = 'Selamat Pagi 🌉'
+ }
 
 // read database
 let tebaklagu = db.data.game.tebaklagu = []
@@ -119,7 +144,7 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
         // Push Message To Console && Auto Read
         if (m.message) {
             isman.readMessages([m.key])
-            console.log(chalk.black(chalk.bgWhite('[ BOT DIKONTROL OLEH ISMAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
+            console.log(chalk.black(chalk.bgRed('[ BOT DIKONTROL OLEH ISMAN ]')), chalk.black(chalk.bgWhite(new Date)), chalk.black(chalk.bgRed(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.white(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.white(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
 	
 	// reset limit every 12 hours
@@ -139,7 +164,7 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
 	    let setting = global.db.data.settings[botNumber]
 	    if (new Date() * 1 - setting.status > 1000) {
 		let uptime = await runtime(process.uptime())
-		await isman.setStatus(`${global.author} | Runtime : ${runtime(uptime)}`)
+		await isman.setStatus(`IsmanTM | Runtime : ${runtime(process.uptime())}`)
 		setting.status = new Date() * 1
 	    }
 	}
@@ -210,7 +235,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaklagu[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -228,7 +253,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakgambar[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakgambar[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -237,7 +262,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkata[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakkata[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -247,7 +272,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             jawaban = caklontong[m.sender.split('@')[0]]
 	    deskripsi = caklontong_desk[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete caklontong[m.sender.split('@')[0]]
 		delete caklontong_desk[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
@@ -257,7 +282,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkalimat[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -266,7 +291,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklirik[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaklirik[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -275,7 +300,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaktebakan[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaktebakan[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -619,15 +644,44 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             isman.sendMessage(m.chat, {document: ana, mimetype: 'application/zip', fileName: `Isman.json`}, {quoted:m})}
             break
             
-            case 'sc': {
-                m.reply('Script : https://wa.me/6282284928416?text=scismanv2\n\nDonate : 6282218677120')
+            case 'sc': case 'script': {
+            menuku = fs.readFileSync('./lib/isman.jpg')
+                isman.sendMessage(m.chat, { image: menuku, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Lagi Cari Script Yah ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+
+┌──⭓「 𝙎𝙘𝙧𝙞𝙥𝙩 」⭓
+│
+│➣ ${prefix}scviagithub1
+│➣ ${prefix}scviagithub2
+│
+└───────⭓
+
+┌──⭓「 𝙏𝙃𝘼𝙉𝙆𝙎 𝙏𝙊 」⭓
+│
+│➣ *ISMAN*
+│➣ *DANIL*
+│➣ *VENOM*
+│➣ *GALAXY*
+│
+└───────⭓
+
+ISMAN 2022` }, { quoted: m })
             }
             break
-            
-case 'p': {
-smeme = fs.readFileSync('./isman/intro.mp4')
-
-isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intro.mp4` }, { quoted: m })} break
+            case 'assalamualaikum': {
+                m.reply('وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n\n_waalaikumussalam wr.wb._')
+            }
+            break
+            case 'scviagithub1': {
+                m.reply('https://github.com/Isman-TM/IsmanV1')
+            }
+            break
+            case 'scviagithub2': {
+                m.reply('https://github.com/Isman-TM/IsmanV2')
+            }
+            break
+            case 'bot': {
+bot = fs.readFileSync('./isman/bot.mp3')
+isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quoted:m})} break
           
             case 'chat': {
                 if (!isCreator) throw mess.owner
@@ -685,7 +739,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaklagu[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaklagu[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebaklagu[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'gambar') {
@@ -698,7 +752,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakgambar[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakgambar[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebakgambar[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'kata') {
@@ -711,7 +765,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (tebakkata.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakkata[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakkata[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebakkata[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'kalimat') {
@@ -724,7 +778,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakkalimat[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakkalimat[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebakkalimat[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'lirik') {
@@ -737,7 +791,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (tebaklirik.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaklirik[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaklirik[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebaklirik[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'lontong') {
@@ -751,7 +805,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                     await sleep(60000)
                     if (caklontong.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `Waktu Habis\nJawaban:  ${caklontong[m.sender.split('@')[0]]}\nDeskripsi : ${caklontong_desk[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author, m)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `Waktu Habis\nJawaban:  ${caklontong[m.sender.split('@')[0]]}\nDeskripsi : ${caklontong_desk[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete caklontong[m.sender.split('@')[0]]
 		    delete caklontong_desk[m.sender.split('@')[0]]
                     }
@@ -786,7 +840,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
             let buttons = [
                         { buttonId: 'jodohku', buttonText: { displayText: 'Jodohku' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, jawab, global.author, m, {mentions: ments})
+                    await isman.sendButtonText(m.chat, buttons, jawab, global.author1, m, {mentions: ments})
             }
             break
             case 'jadian': {
@@ -801,7 +855,7 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
             let buttons = [
                         { buttonId: 'jadian', buttonText: { displayText: 'Jodohku' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, jawab, global.author, m, {mentions: menst})
+                    await isman.sendButtonText(m.chat, buttons, jawab, global.author1, m, {mentions: menst})
             }
             break
             case 'react': {
@@ -833,8 +887,8 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
                if (!isCreator) throw mess.owner
                if (!text) throw `Contoh : ${prefix + command} packname|author`
           global.packname = text.split("|")[0]
-          global.author = text.split("|")[1]
-          m.reply(`Exif berhasil diubah menjadi\n\n➣ Packname : ${global.packname}\n➣ Author : ${global.author}`)
+          global.author1 = text.split("|")[1]
+          m.reply(`Exif berhasil diubah menjadi\n\n➣ Packname : ${global.packname}\n➣ Author : ${global.author1}`)
             }
             break
 	case 'kick': {
@@ -898,19 +952,26 @@ isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `Intr
             }
             break
           case 'setppbot': {
-                if (!isCreator) throw mess.owner
-                if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
-                if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
-                let media = await isman.downloadAndSaveMediaMessage(qmsg)
-                await isman.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
-                m.reply(mess.success)
-                }
-                 break
+if (!isCreator) return
+if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+var media = await isman.downloadAndSaveMediaMessage(quoted)
+try {
+if (args[0] == "/full") {
+const { generateProfilePicture } = require("./lib/myfunc")
+var { img } = await generateProfilePicture(media)
+await isman.query({ tag: 'iq',attrs: { to: botNumber, type:'set', xmlns: 'w:profile:picture'}, content: [{ tag: 'picture', attrs: { type: 'image' }, content: img }]})
+} else { await isman.updateProfilePicture(botNumber, { url: media }) }
+m.reply(`Berhasil Kak`)
+} catch { m.reply('Gagal Mengganti Photo Profilenya Kak') }
+}
+break
                  case 'namafotobot': {
                if (!isCreator) throw mess.owner
                if (!text) throw `Contoh : ${prefix + command} IsmanBot`
           global.packname = text.split("|")[0]
-          global.author = text.split("|")[1]
+          global.author1 = text.split("|")[1]
           m.reply(`Awokawowk Lu Bukan Owner Asli Gua bre\n\nOwner Asli Gua *Isman-Ofc* bre...\n\nMastah Kok Sc gratisan 👻\n\nBeli Bre Biar Fiturnya Berjalan`)
             }
             break
@@ -1046,7 +1107,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 
             let buttonMessageUpvote = {
                 text: teks_vote,
-                footer: global.author,
+                footer: global.author1,
                 buttons: buttonsUpvote,
                 headerType: 1,
                 mentions: menvote
@@ -1088,7 +1149,7 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 
             let buttonMessageDevote = {
                 text: teks_vote,
-                footer: global.author,
+                footer: global.author1,
                 buttons: buttonsDevote,
                 headerType: 1,
                 mentions: menvote
@@ -1145,7 +1206,7 @@ break
                         { buttonId: 'group open', buttonText: { displayText: 'Open' }, type: 1 },
                         { buttonId: 'group close', buttonText: { displayText: 'Close' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `Mode Group`, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `Mode Group`, global.author1, m)
 
              }
             }
@@ -1163,10 +1224,28 @@ break
                         { buttonId: 'editinfo open', buttonText: { displayText: 'Open' }, type: 1 },
                         { buttonId: 'editinfo close', buttonText: { displayText: 'Close' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `Mode Edit Info`, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `Mode Edit Info`, global.author1, m)
 
             }
             }
+            break
+            case 'autobio': {
+                if (args[0] === "on") {
+                if (db.data.settings[botNumber].autobio) return m.reply(`Sudah Aktif Sebelumnya`)
+                db.data.settings[botNumber].autobio = true
+                m.reply(`Autobio Aktif !`)
+                } else if (args[0] === "off") {
+                if (db.data.settings[botNumber].autobio) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
+                db.data.settings[botNumber].autobio = false
+                m.reply(`Autobio Tidak Aktif !`)
+                } else {
+                 let buttons = [
+                        { buttonId: 'autobio on', buttonText: { displayText: 'On' }, type: 1 },
+                        { buttonId: 'autobio off', buttonText: { displayText: 'Off' }, type: 1 }
+                    ]
+                    await isman.sendButtonText(m.chat, buttons, `Mode Autobio`, global.author1, m)
+                }
+             }
             break
             case 'antilink': {
                 if (!m.isGroup) throw mess.group
@@ -1185,7 +1264,7 @@ break
                         { buttonId: 'antilink on', buttonText: { displayText: 'On' }, type: 1 },
                         { buttonId: 'antilink off', buttonText: { displayText: 'Off' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `Mode Antilink`, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `Mode Antilink`, global.author1, m)
                 }
              }
              break
@@ -1196,17 +1275,17 @@ break
                 if (args[0] === "on") {
                 if (db.data.chats[m.chat].mute) return m.reply(`Sudah Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = true
-                m.reply(`${global.author} telah di mute di group ini !`)
+                m.reply(`${global.author1} telah di mute di group ini !`)
                 } else if (args[0] === "off") {
                 if (!db.data.chats[m.chat].mute) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = false
-                m.reply(`${global.author} telah di unmute di group ini !`)
+                m.reply(`${global.author1} telah di unmute di group ini !`)
                 } else {
                  let buttons = [
                         { buttonId: 'mute on', buttonText: { displayText: 'On' }, type: 1 },
                         { buttonId: 'mute off', buttonText: { displayText: 'Off' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `Mute Bot`, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `Mute Bot`, global.author1, m)
                 }
              }
              break
@@ -1241,7 +1320,7 @@ break
                 ]
                 },
                 ]
-                isman.sendListMsg(m.chat, `Please select the following Ephemeral Options List !`, global.author, `Hello Admin ${groupMetadata.subject}`, `Click Here`, sections, m)
+                isman.sendListMsg(m.chat, `Please select the following Ephemeral Options List !`, global.author1, `Hello Admin ${groupMetadata.subject}`, `Click Here`, sections, m)
                 }
             }
             break
@@ -1261,7 +1340,7 @@ break
                         { buttonId: 'anticall on', buttonText: { displayText: 'On' }, type: 1 },
                         { buttonId: 'anticall off', buttonText: { displayText: 'Off' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `Mode AntiCall`, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `Mode AntiCall`, global.author1, m)
                 }
              }
              break
@@ -1284,7 +1363,7 @@ break
                     let btn = [{
                                 urlButton: {
                                     displayText: 'Script',
-                                    url: 'https://wa.me/6282284928416?text=scismanv2'
+                                    url: 'https://wa.me/6282284928416?text=scviagithub2'
                                 }
                             }, {
                                 callButton: {
@@ -1308,7 +1387,7 @@ break
                                 }
                             }]
                       let txt = `「 Broadcast Bot 」\n\n${text}`
-                      isman.send5ButImg(i, txt, global.author, global.bc, btn)
+                      isman.send5ButImg(i, txt, global.author1, global.bc, btn)
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -1323,7 +1402,7 @@ break
 		    let btn = [{
                                 urlButton: {
                                     displayText: 'Script',
-                                    url: 'https://wa.me/6282284928416?text=scismanv2'
+                                    url: 'https://wa.me/6282284928416?text=scviagithub2'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1342,7 +1421,7 @@ break
                                 }
                             }]
                       let txt = `「 Broadcast Bot 」\n\n${text}`
-                      isman.send5ButImg(yoi, txt, global.author, global.bc, btn)
+                      isman.send5ButImg(yoi, txt, global.author1, global.bc, btn)
 		}
 		m.reply('Sukses Broadcast')
             }
@@ -1535,7 +1614,7 @@ break
             let media = await isman.downloadMediaMessage(qmsg)
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            isman.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${global.author}.mp3`}, { quoted : m })
+            isman.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${global.author1}.mp3`}, { quoted : m })
             }
             break
             case 'tovn': case 'toptt': {
@@ -1635,7 +1714,7 @@ break
                     caption: `*-------「 GIMAGE SEARCH 」-------*
 🤠 *Query* : ${text}
 🔗 *Media Url* : ${images}`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1665,7 +1744,7 @@ break
 ➣ Channel : ${anu.author.url}
 ➣ Description : ${anu.description}
 ➣ Url : ${anu.url}`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1673,7 +1752,7 @@ break
             }
             break
            
-           case 'DJSADOlD': {
+           case 'djsadold': {
            let yts = require("yt-search")
                 let search = await yts('https://youtu.be/1GXmxcrudnk')
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
@@ -1692,7 +1771,7 @@ break
 ➣ *Channel* : https://youtube.com/c/ISMANFF
 ➣ *Description* : Jangan Lupa Subscribe yah
 ➣ *Url* : ${anu.url}`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1774,7 +1853,7 @@ break
                 let buttonMessage = {
                     image: { url: 'https://coffee.alexflipnote.dev/random' },
                     caption: `☕ Random Coffe`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1792,7 +1871,7 @@ break
                 let buttonMessage = {
                     image: { url: result.image[0] },
                     caption: `➣ Title : ${result.title}\n➣ Category : ${result.type}\n➣ Detail : ${result.source}\n➣ Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1810,7 +1889,7 @@ break
                 let buttonMessage = {
                     image: { url: result.image },
                     caption: `➣ Title : ${result.title}\n➣ Source : ${result.source}\n➣ Media Url : ${result.image}`,
-                    footer: global.author,
+                    footer: global.author1,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -1847,13 +1926,25 @@ break
                 isman.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
+            case 'pencil': case 'logobear': case '3dboxtext': case '3d-neon-light': case '3d-orange-juice': case 'chocolate-cake': case 'strawberry': {
+            if (!text) throw `Contoh : ${prefix + command} text`
+            m.reply(mess.wait)
+                isman.sendMessage(m.chat, { image: { url: api('botcah', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+	    }
+            break
             case '3dchristmas': case '3ddeepsea': case 'americanflag': case '3dscifi': case '3drainbow': case '3dwaterpipe': case 'halloweenskeleton': case 'sketch': case 'bluecircuit': case 'space': case 'metallic': case 'fiction': case 'greenhorror': case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dcrackedstone': case '3dneonlight': case 'impressiveglitch': case 'naturalleaves': case 'fireworksparkle': case 'matrix': case 'dropwater':  case 'harrypotter': case 'foggywindow': case 'neondevils': case 'christmasholiday': case '3dgradient': case 'blackpink': case 'gluetext': {
                 if (!text) throw `Contoh : ${prefix + command} text`
                 m.reply(mess.wait)
                 isman.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
 	    }
             break
-	    case 'shadow': case 'romantic': case 'smoke': case 'burnpapper': case 'naruto': case 'lovemsg': case 'grassmsg': case 'lovetext': case 'coffecup': case 'butterfly': case 'harrypotter': case 'retrolol': {
+            case 'naruto': {
+            if (!text) throw `Contoh : ${prefix + command} text`
+            m.reply(mess.wait)
+                isman.sendMessage(m.chat, { image: { url: api('botcah', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+	    }
+	        break
+	    case 'shadow': case 'romantic': case 'smoke': case 'burnpapper': case 'lovemsg': case 'grassmsg': case 'lovetext': case 'coffecup': case 'butterfly': case 'harrypotter': case 'retrolol': {
                 if (!text) throw 'No Query Text'
                 m.reply(mess.wait)
                 isman.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Photo Oxy ${command}` }, { quoted: m })
@@ -2180,33 +2271,60 @@ break
                 }
             }
             break
-	        case 'tiktok': case 'tt':
-reply(`[ *TIKTOK-DL* ]\n• *${prefix}tiktokmp3*\n• *${prefix}tiktokmp4*`)
-break
-case 'ttmp4': case 'ttvideo': case 'tiktokmp4': case 'tiktokvideo':
-if (!text) throw("Masukkan link nya")
-m.reply("[❗] SEDANG DIPROSES")
-var tt = await tiktokdlv3(q).catch(e => { m.reply("PASTIKAN LINKNYA VALID(LINK TIKTOK)")})
-isman.sendMessage(from, {video:{url:tt.video.no_watermark}, caption:"😀", mentions:[sender]},{quoted:nay1})
-break 
-case 'ttmp3': case 'ttaudio': case 'tiktokmp3': case 'tiktokaudio':
-if (!q) return reply("Masukkan link nya")
-reply("[❗] SEDANG DIPROSES")
-var tt = await tiktokdlv3(q).catch(e => { reply("PASTIKAN LINKNYA VALID(LINK TIKTOK)")})
-isman.sendMessage(from, {audio:{url:tt.music}, mimetype:"audio/mp4", mentions:[sender]},{quoted:nay1})
-break
-case 'playmp3': case 'playaudio':
-if (!q) return reply("Masukkan judul")
-reply("[❗] SEDANG DIPROSES")
-var yt = await api.downloader.youtube.ytplay(q).catch(e => { reply("PASTIKAN JUDUL BENAR")})
-isman.sendMessage(from, {audio:{url:yt.result}, mimetype:"audio/mp4"},{quoted:nay1})
-break
-case 'playmp4': case 'playvideo':
-if (!q) return reply("Masukkan judul")
-reply("[❗] SEDANG DIPROSES")
-var yt = await api.downloader.youtube.ytplayvid(q).catch(e => { reply("PASTIKAN JUDUL BENAR")})
-isman.sendMessage(from, {video:{url:yt.result}},{quoted:nay1})
-break
+           case 'tiktok': case 'tiktoknowm': {
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let buttons = [
+                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                ]
+                let buttonMessage = {
+                    video: { url: anu.result.video },
+                    caption: `Download From ${text}`,
+                    footer: 'Press The Button Below',
+                    buttons: buttons,
+                    headerType: 5
+                }
+                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
+            break
+            case 'tiktokwm': case 'tiktokwatermark': {
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let buttons = [
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                ]
+                let buttonMessage = {
+                    video: { url: anu.result.video_original },
+                    caption: `Download From ${text}`,
+                    footer: 'Press The Button Below',
+                    buttons: buttons,
+                    headerType: 5
+                }
+                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
+            break
+            case 'tiktokmp3': case 'tiktokaudio': {
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let buttons = [
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
+                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
+                ]
+                let buttonMessage = {
+                    text: `Download From ${text}`,
+                    footer: 'Press The Button Below',
+                    buttons: buttons,
+                    headerType: 2
+                }
+                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
+            }
+            break
 	        case 'instagram': case 'ig': case 'igdl': {
                 if (!text) throw 'No Query Url!'
                 m.reply(mess.wait)
@@ -2303,7 +2421,7 @@ break
 ➣ Url : ${anu.media[0]}
 Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan command ytmp3/ytmp4 dengan url diatas
 `,
-			footer: global.author,
+			footer: global.author1,
 			buttons,
 			headerType: 4
 		    }
@@ -2511,7 +2629,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
 				let buttons = [
                     { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                 ]
-                isman.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await isman.getName(m.sender)} Welcome To Anonymous Chat\n\nKlik Button Dibawah Ini Untuk Mencari Partner\`\`\``, global.author, m)
+                isman.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await isman.getName(m.sender)} Welcome To Anonymous Chat\n\nKlik Button Dibawah Ini Untuk Mencari Partner\`\`\``, global.author1, m)
             }
 			break
             case 'keluar': case 'leave': {
@@ -2536,7 +2654,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Kamu Masih Berada Di dalam Sesi Anonymous, Tekan Button Dibawah Ini Untuk Menghentikan Sesi Anonymous Anda\`\`\``, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Kamu Masih Berada Di dalam Sesi Anonymous, Tekan Button Dibawah Ini Untuk Menghentikan Sesi Anonymous Anda\`\`\``, global.author1, m)
                     throw false
                 }
                 let room = Object.values(db.data.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
@@ -2545,10 +2663,10 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                         { buttonId: 'next', buttonText: { displayText: 'Skip' }, type: 1 },
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await isman.sendButtonText(room.a, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author, m)
+                    await isman.sendButtonText(room.a, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author1, m)
                     room.b = m.sender
                     room.state = 'CHATTING'
-                    await isman.sendButtonText(room.b, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author, m)
+                    await isman.sendButtonText(room.b, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author1, m)
                 } else {
                     let id = + new Date
                     db.data.anonymous[id] = {
@@ -2566,7 +2684,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, global.author1, m)
                 }
                 break
             }
@@ -2589,10 +2707,10 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                         { buttonId: 'next', buttonText: { displayText: 'Skip' }, type: 1 },
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await isman.sendButtonText(room.a, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author, m)
+                    await isman.sendButtonText(room.a, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author1, m)
                     room.b = m.sender
                     room.state = 'CHATTING'
-                    await isman.sendButtonText(room.b, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author, m)
+                    await isman.sendButtonText(room.b, buttons, `\`\`\`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\`\`\``, global.author1, m)
                 } else {
                     let id = + new Date
                     db.data.anonymous[id] = {
@@ -2610,7 +2728,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, global.author, m)
+                    await isman.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, global.author1, m)
                 }
                 break
             }
@@ -2650,8 +2768,26 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             }
             }
             break
-            case 'owner': case 'creator': {
+            case 'thanksto': {
+                isman.sendContact(m.chat, global.thanksto, m)
+            }
+            break
+		    case 'owner': {
+		        ownerku = fs.readFileSync('./isman/ownerku.mp3')
+                isman.sendMessage(m.chat, {audio: ownerku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
                 isman.sendContact(m.chat, global.owner, m)
+            }
+            break
+            case 'pcrnycreat': {
+                pcrku = fs.readFileSync('./isman/pcrku.mp3')
+                isman.sendMessage(m.chat, {audio: pcrku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+                isman.sendContact(m.chat, global.pcrnyacreat, m)
+            }
+            break
+            case 'creator': {
+                creatku = fs.readFileSync('./isman/creatorku.mp3')
+                isman.sendMessage(m.chat, {audio: creatku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+                isman.sendContact(m.chat, global.creator, m)
             }
             break
             case 'playstore': {
@@ -2754,6 +2890,170 @@ let capt = `➣ Title: ${judul}
             m.reply(capt)
             }
             break
+case 'sound1':
+case 'sound2':
+case 'sound3':
+case 'sound4':
+case 'sound5':
+case 'sound6':
+case 'sound7':
+case 'sound8':
+case 'sound9':
+case 'sound10':
+case 'sound11':
+case 'sound12':
+case 'sound13':
+case 'sound14':
+case 'sound15':
+case 'sound16':
+case 'sound17':
+case 'sound18':
+case 'sound19':
+case 'sound20':
+case 'sound21':
+case 'sound22':
+case 'sound23':
+case 'sound24':
+case 'sound25':
+case 'sound26':
+case 'sound27':
+case 'sound28':
+case 'sound29':
+case 'sound30':
+case 'sound31':
+case 'sound32':
+case 'sound33':
+case 'sound34':
+case 'sound35':
+case 'sound36':
+case 'sound37':
+case 'sound38':
+case 'sound39':
+case 'sound40':
+case 'sound41':
+case 'sound42':
+case 'sound43':
+case 'sound44':
+case 'sound45':
+case 'sound46':
+case 'sound47':
+case 'sound48':
+case 'sound49':
+case 'sound50':
+case 'sound51':
+case 'sound52':
+case 'sound53':
+case 'sound54':
+case 'sound55':
+case 'sound56':
+case 'sound57':
+case 'sound58':
+case 'sound59':
+case 'sound60':
+case 'sound61':
+case 'sound62':
+case 'sound63':
+case 'sound64':
+case 'sound65':
+case 'sound66':
+case 'sound67':
+case 'sound68':
+case 'sound69':
+case 'sound70':
+case 'sound71':
+case 'sound72':
+case 'sound73':
+case 'sound74':
+case 'sound75':
+case 'sound76':
+case 'sound77':
+case 'sound78':
+case 'sound79':
+case 'sound80':
+case 'sound81':
+case 'sound82':
+case 'sound83':
+case 'sound84':
+case 'sound85':
+case 'sound86':
+case 'sound87':
+case 'sound88':
+case 'sound89':
+case 'sound90':
+case 'sound91':
+case 'sound92':
+case 'sound93':
+case 'sound94':
+case 'sound95':
+case 'sound96':
+case 'sound97':
+case 'sound98':
+case 'sound99':
+case 'sound100':
+case 'sound101':
+case 'sound102':
+case 'sound103':
+case 'sound104':
+case 'sound105':
+case 'sound106':
+case 'sound107':
+case 'sound108':
+case 'sound109':
+case 'sound110':
+case 'sound111':
+case 'sound112':
+case 'sound113':
+case 'sound114':
+case 'sound115':
+case 'sound116':
+case 'sound117':
+case 'sound118':
+case 'sound119':
+case 'sound120':
+case 'sound121':
+case 'sound122':
+case 'sound123':
+case 'sound124':
+case 'sound125':
+case 'sound126':
+case 'sound127':
+case 'sound128':
+case 'sound129':
+case 'sound130':
+case 'sound131':
+case 'sound132':
+case 'sound133':
+case 'sound134':
+case 'sound135':
+case 'sound136':
+case 'sound137':
+case 'sound138':
+case 'sound139':
+case 'sound140':
+case 'sound141':
+case 'sound142':
+case 'sound143':
+case 'sound144':
+case 'sound145':
+case 'sound146':
+case 'sound147':
+case 'sound148':
+case 'sound149':
+case 'sound150':
+case 'sound151':
+case 'sound152':
+case 'sound153':
+case 'sound154':
+case 'sound155':
+case 'sound156':
+case 'sound157':
+case 'sound158':
+case 'sound159':
+case 'sound160':
+case 'sound161':
+isman_dev = await getBuffer(`https://github.com/DGXeon/Tiktokmusic-API/raw/master/tiktokmusic/${command}.mp3`)
+await isman.sendMessage(m.chat, { audio: isman_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+break
             case 'drakor': {
             if (!text) throw `Contoh : ${prefix + command} love`
             let res = await fetchJson(api('zenz', '/webzone/drakor', { query: text }, 'apikey'))
@@ -2772,10 +3072,19 @@ let capt = `➣ Title: ${judul}
             
             
              case 'list': case 'menu': case 'help': case '?': {
+                menu = fs.readFileSync('./isman/menu.mp3')
+                isman.sendMessage(m.chat, {audio: menu, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
                 menuku = fs.readFileSync('./lib/isman.jpg')
-                isman.sendMessage(m.chat, { image: menuku, caption: `_Selamat Datang Di IsmanBot_\n\n _Ada Yang Bisa Kami Bantu Kak ${m.pushName} ☺🙏_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+                isman.sendMessage(m.chat, { image: menuku, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Ada Yang Bisa Saya Bantu Kak ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
 
-┌──⭓ *Menu*
+┌──⭓「 *Indonesia Time* 」⭓
+│➣ *Hari Ini* : ${hariini}
+│➣ *Wib* : ${barat} WIB
+│➣ *Wita* : ${tengah} WITA
+│➣ *Wit* : ${timur} WIT
+└───────⭓
+
+┌──⭓「 *Menu* 」⭓
 │
 │➣ ${prefix}linkgroup
 │➣ ${prefix}ephemeral [option]
@@ -2801,7 +3110,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Webzone Menu*
+┌──⭓「 *Webzone Menu* 」⭓
 │
 │➣ ${prefix}playstore
 │➣ ${prefix}gsmarena
@@ -2814,7 +3123,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Downloader Menu*
+┌──⭓「 *Downloader Menu* 」⭓
 │
 │➣ ${prefix}tiktoknowm [url]
 │➣ ${prefix}tiktokwm [url]
@@ -2834,7 +3143,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
  
-┌──⭓ *Search Menu*
+┌──⭓「 *Search Menu* 」⭓
 │
 │➣ ${prefix}play [query]
 │➣ ${prefix}yts [query]
@@ -2849,7 +3158,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
   
-┌──⭓ *Random Menu*
+┌──⭓「 *Rondom Menu* 」⭓
 │
 │➣ ${prefix}coffe
 │➣ ${prefix}quotesanime
@@ -2871,7 +3180,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
   
-┌──⭓ *Text Pro Menu*
+┌──⭓「 *Text Pro Menu* 」⭓
 │
 │➣ ${prefix}3dchristmas
 │➣ ${prefix}3ddeepsea
@@ -2904,10 +3213,17 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}3dgradient
 │➣ ${prefix}blackpink
 │➣ ${prefix}gluetext
+│➣ ${prefix}pencil
+│➣ ${prefix}logobear
+│➣ ${prefix}3dboxtext
+│➣ ${prefix}3d-neon-light
+│➣ ${prefix}3d-orange-juice
+│➣ ${prefix}chocolate-cake
+│➣ ${prefix}strawberry
 │
 └───────⭓
   
-┌──⭓ *Photo Oxy Menu*
+┌──⭓「 *Photo Oxy Menu* 」⭓
 │
 │➣ ${prefix}shadow
 │➣ ${prefix}romantic
@@ -2924,7 +3240,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
   
-┌──⭓ *Ephoto Menu*
+┌──⭓「 *Ephoto Menu* 」⭓
 │
 │➣ ${prefix}ffcover
 │➣ ${prefix}crossfire
@@ -2938,7 +3254,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
   
-┌──⭓ *Fun Menu*
+┌──⭓「 *Fun Menu* 」⭓
 │
 │➣ ${prefix}simih
 │➣ ${prefix}halah
@@ -2957,7 +3273,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
   
-┌──⭓ *Primbon Menu*
+┌──⭓「 *Primbon Menu* 」⭓
 │
 │➣ ${prefix}nomorhoki
 │➣ ${prefix}artimimpi
@@ -2992,7 +3308,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Convert Menu*
+┌──⭓「 *Onvert Menu* 」⭓
 │
 │➣ ${prefix}attp
 │➣ ${prefix}ttp
@@ -3015,9 +3331,10 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Main Menu*
+┌──⭓「 *Main Menu* 」⭓
 │
 │➣ ${prefix}ping
+│➣ ${prefix}creator
 │➣ ${prefix}owner
 │➣ ${prefix}menu / ${prefix}help / ${prefix}?
 │➣ ${prefix}delete
@@ -3030,7 +3347,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Database Menu*
+┌──⭓「 *Database Menu* 」⭓
 │
 │➣ ${prefix}setcmd
 │➣ ${prefix}listcmd
@@ -3043,7 +3360,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Anonymous Menu*
+┌──⭓「 *Anonymous Menu* 」⭓
 │
 │➣ ${prefix}anonymous
 │➣ ${prefix}start
@@ -3052,7 +3369,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Islamic Menu*
+┌──⭓「 *Islamic Menu* 」⭓
 │
 │➣ ${prefix}iqra
 │➣ ${prefix}hadist
@@ -3061,7 +3378,13 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Voice Changer*
+┌──⭓「 *Sound* 」⭓
+│
+│➣ ${prefix}sound [1-161]
+│
+└───────⭓
+
+┌──⭓「 *Voice Changer* 」⭓
 │
 │➣ ${prefix}bass
 │➣ ${prefix}blown
@@ -3077,7 +3400,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *Owner Menu*
+┌──⭓「 *Owner Menu* 」⭓
 │
 │➣ ${prefix}react [emoji]
 │➣ ${prefix}chat [option]
@@ -3094,7 +3417,7 @@ let capt = `➣ Title: ${judul}
 │
 └───────⭓
 
-┌──⭓ *THANKS TO*
+┌──⭓「 *Thanks To* 」⭓
 │
 │➣ *DANIL*
 │➣ *ISMAN*

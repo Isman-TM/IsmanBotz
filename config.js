@@ -4,6 +4,7 @@ const chalk = require('chalk')
 // MAKASIHLAH KE BANG ZENZ :)
 global.APIs = {
 	zenz: 'https://zenzapis.xyz',
+	botcah: 'https://botcahx.ddns.net/api',
 }
 
 // HMM UDAH FREE DECK
@@ -12,10 +13,14 @@ global.APIKeys = {
 }
 
 // NAMBAH BOLEH HAPUS JANGAN -_-
-global.owner = ['6282237949722','62895328935760','6285255312224']
+global.creator = ['6282237949722']
+global.pcrnyacreat = ['6288972720297']
+global.owner = ['6282237949722','6288972720297','62895328935760','6285255312224','628985479521']
+global.thanksto = ['6282237949722','62895328935760','6285255312224','628985479521']
 global.premium = ['6282237949722']
-global.packname = 'Botz WhatsApp'
-global.author = 'Creator Isman'
+global.packname = 'Amel'
+global.author = 'Pcr Ku'
+global.author1 = 'Isman TM'
 global.sessionName = 'Isman'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
@@ -35,7 +40,6 @@ global.limitawal = {
     free: 5
 }
 global.thumb = fs.readFileSync('./lib/isman.jpg')
-global.tutor = fs.readFileSync('./isman/intro.mp4')
 global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
