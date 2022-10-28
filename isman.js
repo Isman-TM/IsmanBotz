@@ -21,6 +21,8 @@ const hariini = moment.tz('Asia/Jakarta').format('dddd, DD MMMM YYYY')
 const barat = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 const tengah = moment.tz('Asia/Makassar').format('HH:mm:ss')
 const timur = moment.tz('Asia/Jayapura').format('HH:mm:ss')
+const namaowner = ('Isman-TM')
+const ownernya = ownernomer + '@s.whatsapp.net'
 
 //TIME
 const time2 = moment().tz('Asia/Makassar').format('HH:mm:ss')  
@@ -146,6 +148,19 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
             isman.readMessages([m.key])
             console.log(chalk.black(chalk.bgRed('[ BOT DIKONTROL OLEH ISMAN ]')), chalk.black(chalk.bgWhite(new Date)), chalk.black(chalk.bgRed(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.white(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.white(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
+        
+        //Resize
+         const reSize = async(buffer, ukur1, ukur2) => {
+             return new Promise(async(resolve, reject) => {
+             let jimp = require('jimp')
+             var baper = await jimp.read(buffer);
+             var ab = await baper.resize(ukur1, ukur2).getBufferAsync(jimp.MIME_JPEG)
+             resolve(ab)
+             })
+             }
+             
+        //fake
+        const  fkntkman = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': `${m.pushName}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;ytname,;;;\nFN:ytname\nitem1.TEL;waid=6285875158363:6285875158363\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await reSize(thumb, 100, 100), thumbnail: await reSize(thumb, 100, 100),sendEphemeral: true}}}
 	
 	// reset limit every 12 hours
         let cron = require('node-cron')
@@ -565,7 +580,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             case 'subscribe':{
             smeme = fs.readFileSync('./isman/subscribe.mp4')
 
-isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `subrek.mp4`, caption: `Betewe Lu Dah Janji Mau Subscribe\n\nJangan PHP Yah 😊\n\nSubscibe:https://youtube.com/c/IsmanFF`},{ quoted: m })} break
+isman.sendMessage(m.chat, { video: smeme, mimetype: 'video/mp4', fileName: `subrek.mp4`, caption: `Betewe Lu Dah Janji Mau Subscribe\n\nJangan PHP Yah 😊\n\nSubscibe:https://youtube.com/c/IsmanFF`},{ quoted: fkntkman })} break
 
 case 'runtime': {
                 const used = process.memoryUsage()
@@ -636,12 +651,12 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             if (!isCreator) throw mess.owner
             ana = fs.readFileSync('./Isman.json')
               m.reply('*Woe Bre Minimal Subscribe Yt  IsmanFF Lah*')
-            isman.sendMessage(m.chat, {document: ana, mimetype: 'application/json', fileName: `Isman.json`}, {quoted:m})}
+            isman.sendMessage(m.chat, {document: ana, mimetype: 'application/json', fileName: `Isman.json`}, {quoted:fkntkman})}
             break
             
              case 'sessionzip': {
             ana = fs.readFileSync('./Isman.json')
-            isman.sendMessage(m.chat, {document: ana, mimetype: 'application/zip', fileName: `Isman.json`}, {quoted:m})}
+            isman.sendMessage(m.chat, {document: ana, mimetype: 'application/zip', fileName: `Isman.json`}, {quoted:fkntkman})}
             break
             
             case 'sc': case 'script': {
@@ -664,7 +679,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 │
 └───────⭓
 
-ISMAN 2022` }, { quoted: m })
+ISMAN 2022` }, { quoted: fkntkman })
             }
             break
             case 'assalamualaikum': {
@@ -681,7 +696,7 @@ ISMAN 2022` }, { quoted: m })
             break
             case 'bot': {
 bot = fs.readFileSync('./isman/bot.mp3')
-isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quoted:m})} break
+isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})} break
           
             case 'chat': {
                 if (!isCreator) throw mess.owner
@@ -732,7 +747,7 @@ isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quote
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                     let anu = await fetchJson('https://fatiharridho.github.io/tebaklagu.json')
                     let result = anu[Math.floor(Math.random() * anu.length)]
-                    let msg = await isman.sendMessage(m.chat, { audio: { url: result.link_song }, mimetype: 'audio/mpeg' }, { quoted: m })
+                    let msg = await isman.sendMessage(m.chat, { audio: { url: result.link_song }, mimetype: 'audio/mpeg' }, { quoted: fkntkman })
                     isman.sendText(m.chat, `Lagu Tersebut Adalah Lagu dari?\n\nArtist : ${result.artist}\nWaktu : 60s`, msg).then(() => {
                     tebaklagu[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
                     })
@@ -977,19 +992,26 @@ break
             break
             case 'namafotobot|subscribe': {
              if (!isCreator) throw mess.owner
-             isman.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `Foto menu Berhasil Diganti\n\nHei Lord *IsmanOfc*..🙏\n\nJangan Sering Sering Ubah Fot Bot Yah🗿` }, { quoted: m })
+             isman.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `Foto menu Berhasil Diganti\n\nHei Lord *IsmanOfc*..🙏\n\nJangan Sering Sering Ubah Fot Bot Yah🗿` }, { quoted: fkntkman })
             } break
             
-           case 'setppgroup': case 'setppgrup': case 'setppgc': {
+          case 'setppgroup': case 'setppgrup': case 'setppgc': {
                 if (!m.isGroup) throw mess.group
                 if (!isAdmins) throw mess.admin
-                if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
-                if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
-                let media = await isman.downloadAndSaveMediaMessage(qmsg)
-                await isman.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
-                m.reply(mess.success)
-                }
-                break
+                if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+var media = await isman.downloadAndSaveMediaMessage(quoted)
+try {
+if (args[0] == "/full") {
+const { generateProfilePicture } = require("./lib/myfunc")
+var { img } = await generateProfilePicture(media)
+await isman.query({ tag: 'iq',attrs: { to: m.chat, type:'set', xmlns: 'w:profile:picture'}, content: [{ tag: 'picture', attrs: { type: 'image' }, content: img }]})
+} else { await isman.updateProfilePicture(m.chat, { url: media }) }
+m.reply(`Berhasil Kak`)
+} catch { m.reply('Gagal Mengganti Photo Profilenya Kak') }
+}
+            break
             case 'tagall': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
@@ -1000,14 +1022,14 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
                 for (let mem of participants) {
                 teks += `➣ @${mem.id.split('@')[0]}\n`
                 }
-                isman.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+                isman.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: fkntkman })
                 }
                 break
                 case 'hidetag': {
             if (!m.isGroup) throw mess.group
             if (!isBotAdmins) throw mess.botAdmin
             if (!isAdmins) throw mess.admin
-            isman.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+            isman.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: fkntkman })
             }
             break
                case 'totag': {
@@ -1351,81 +1373,58 @@ break
                 isman.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
-            case 'bcgc': case 'bcgroup': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nContoh : ${prefix + command} fatih-san`
-                let getGroups = await isman.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
-                for (let i of anu) {
-                    await sleep(1500)
-                    let btn = [{
-                                urlButton: {
-                                    displayText: 'Script',
-                                    url: 'https://wa.me/6282284928416?text=scviagithub2'
-                                }
-                            }, {
-                                callButton: {
-                                    displayText: 'Number Phone Owner',
-                                    phoneNumber: '+62 822-3794-9722'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Status Bot',
-                                    id: 'runtime'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Script',
-                                    id: 'sc'
-                                }
-                            }]
-                      let txt = `「 Broadcast Bot 」\n\n${text}`
-                      isman.send5ButImg(i, txt, global.author1, global.bc, btn)
-                    }
-                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            case 'report': case 'lapor': {
+            	if (!text) throw `Example : ${prefix + command} Lapor Ada Fitur Yang error`
+               let ownernya = ownernomer + '@s.whatsapp.net'
+               let me = m.sender
+               let pjtxt = `Pesan Dari : @${me.split('@')[0]} \nUntuk : @${ownernya.split('@')[0]}\n\n${text}`
+               let ments = [ownernya, me]
+               let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS LAPORANNYA' }, type: 1 }]
+            await isman.sendButtonText(ownernya, buttons, pjtxt, namaowner, m, {mentions: ments})
+            let akhji = `Laporan Telah Terkirim\nKe Owner @${ownernya.split('@')[0]}\n*Terima Kasih Laporannya🙏*\n_Nomermu Akan Terblokir_\n_Jika Laporan Hanya Di Buat Buat_`
+            await isman.sendButtonText(m.chat, buttons, akhji, namaowner, m, {mentions: ments})
             }
             break
-            case 'bc': case 'broadcast': case 'bcall': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nContoh : ${prefix + command} Subscribe Yt IsmanFF`
-                let anu = await store.chats.all().map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
+            case 'hehehe': {
+                reactionMessage = {
+                    react: {
+                        text: '❤',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
+            }
+            break
+            case 'bcgc': case 'bcgroup': {
+if (!isCreator) throw mess.owner
+if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
+let getGroups = await isman.groupFetchAllParticipating()
+let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+let anu = groups.map(v => v.id)
+m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+for (let i of anu) {
+await sleep(1500)
+let txt = `「 Broadcast Bot 」\n\n${text}`
+let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Isman' }, type: 1 },{ buttonId: 'pcrnycreat', buttonText: { displayText: 'Amel' }, type: 1 }]
+await isman.sendButtonText(i, buttons, txt, namaowner, m, {quoted: fkntkman})
+}
+m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+}
+break
+case 'bc': case 'broadcast': case 'bcall': {
+if (!isCreator) throw mess.owner
+if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
+let anu = await store.chats.all().map(v => v.id)
+m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
 		for (let yoi of anu) {
-		    await sleep(1500)
-		    let btn = [{
-                                urlButton: {
-                                    displayText: 'Script',
-                                    url: 'https://wa.me/6282284928416?text=scviagithub2'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Status Bot',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Script',
-                                    id: 'sc'
-                                }
-                            }]
-                      let txt = `「 Broadcast Bot 」\n\n${text}`
-                      isman.send5ButImg(yoi, txt, global.author1, global.bc, btn)
+		await sleep(1500)
+		let txt = `「 Broadcast Bot 」\n\n${text}`
+		let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Isman' }, type: 1 },{ buttonId: 'pcrnycreat', buttonText: { displayText: 'Amel' }, type: 1 }]
+            await isman.sendButtonText(yoi, buttons, txt, namaowner, m, {quoted: fkntkman})
 		}
 		m.reply('Sukses Broadcast')
-            }
-            break
+}
+break
             case 'infochat': {
                 if (!m.quoted) m.reply('Reply Pesan')
                 let msg = await m.getQuotedObj()
@@ -1584,7 +1583,7 @@ break
                     fs.unlinkSync(media)
                     if (err) throw err
                     let buffer = fs.readFileSync(ran)
-                    isman.sendMessage(m.chat, { image: buffer }, { quoted: m })
+                    isman.sendMessage(m.chat, { image: buffer }, { quoted: fkntkman })
                     fs.unlinkSync(ran)
                 })
             }
@@ -1595,7 +1594,7 @@ break
 		        let { webp2mp4File } = require('./lib/uploader')
                 let media = await isman.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
-                await isman.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: m })
+                await isman.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: fkntkman })
                 await fs.unlinkSync(media)
             }
             break
@@ -1605,7 +1604,7 @@ break
             let media = await isman.downloadMediaMessage(qmsg)
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            isman.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+            isman.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : fkntkman })
             }
             break
             case 'tomp3': {
@@ -1614,7 +1613,7 @@ break
             let media = await isman.downloadMediaMessage(qmsg)
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            isman.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${global.author1}.mp3`}, { quoted : m })
+            isman.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${global.author1}.mp3`}, { quoted : fkntkman })
             }
             break
             case 'tovn': case 'toptt': {
@@ -1623,7 +1622,7 @@ break
             let media = await isman.downloadMediaMessage(qmsg)
             let { toPTT } = require('./lib/converter')
             let audio = await toPTT(media, 'mp4')
-            isman.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+            isman.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
             }
             break
             case 'togif': {
@@ -1632,7 +1631,7 @@ break
 		        let { webp2mp4File } = require('./lib/uploader')
                 let media = await isman.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
-                await isman.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
+                await isman.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: fkntkman })
                 await fs.unlinkSync(media)
             }
             break
@@ -1668,7 +1667,7 @@ break
 	      scale: "100%",
 	      outputFile 
 	    }).then(async result => {
-	    isman.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
+	    isman.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : fkntkman })
 	    await fs.unlinkSync(localFile)
 	    await fs.unlinkSync(outputFile)
 	    })
@@ -1683,7 +1682,7 @@ break
                 for (let i of search.all) {
                     teks += `➣ No : ${no++}\n➣ Type : ${i.type}\n➣ Video ID : ${i.videoId}\n➣ Title : ${i.title}\n➣ Views : ${i.views}\n➣ Duration : ${i.timestamp}\n➣ Upload At : ${i.ago}\n➣ Author : ${i.author.name}\n➣ Url : ${i.url}\n\n─────────────────\n\n`
                 }
-                isman.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: fkntkman })
             }
             break
         case 'google': {
@@ -1718,7 +1717,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
         })
         }
         break
@@ -1748,7 +1747,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
            
@@ -1775,27 +1774,42 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
            
 	    case 'ytmp3': case 'ytaudio': {
-                let { yta } = require('./lib/y2mate')
-                if (!text) throw `Contoh : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
-                let quality = args[1] ? args[1] : '128kbps'
-                let media = await yta(text, quality)
-                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                isman.sendImage(m.chat, media.thumb, `➣ Title : ${media.title}\n➣ File Size : ${media.filesizeF}\n➣ Url : ${isUrl(text)}\n➣ Ext : MP3\n➣ Resolusi : ${args[1] || '128kbps'}`, m)
-                isman.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=023l1qhbpk`)
+                let buttons = [
+                    {buttonId: `ytmp4 ${text}`, buttonText: {displayText: '► Video'}, type: 1}
+                ]
+                let buttonMessage = {
+                    text: `Download From ${text}`,
+                    footer: 'Isman ♡ Amel',
+                    buttons: buttons,
+                    headerType: 2
+                }
+                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg'}, { quoted: msg })
             }
             break
             case 'ytmp4': case 'ytvideo': {
-                let { ytv } = require('./lib/y2mate')
-                if (!text) throw `Contoh : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
-                let quality = args[1] ? args[1] : '360p'
-                let media = await ytv(text, quality)
-                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                isman.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `➣ Title : ${media.title}\n➣ File Size : ${media.filesizeF}\n➣ Url : ${isUrl(text)}\n➣ Ext : MP3\n➣ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=023l1qhbpk`)
+                let buttons = [
+                    {buttonId: `ytmp3 ${text}`, buttonText: {displayText: 'Audio'}, type: 1}
+                ]
+                let buttonMessage = {
+                    video: { url: anu.result.url },
+                    caption: `Download From ${text}`,
+                    footer: 'Isman ♡ Amel',
+                    buttons: buttons,
+                    headerType: 5
+                }
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
 	    case 'getmusic': {
@@ -1809,7 +1823,7 @@ break
                 let media = await yta(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 isman.sendImage(m.chat, media.thumb, `➣ Title : ${media.title}\n➣ File Size : ${media.filesizeF}\n➣ Url : ${urls[text - 1]}\n➣ Ext : MP3\n➣ Resolusi : ${args[1] || '128kbps'}`, m)
-                isman.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                isman.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: fkntkman })
             }
             break
             case 'getvideo': {
@@ -1822,7 +1836,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                isman.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `➣ Title : ${media.title}\n➣ File Size : ${media.filesizeF}\n➣ Url : ${urls[text - 1]}\n➣ Ext : MP3\n➣ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                isman.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `➣ Title : ${media.title}\n➣ File Size : ${media.filesizeF}\n➣ Url : ${urls[text - 1]}\n➣ Ext : MP3\n➣ Resolusi : ${args[1] || '360p'}` }, { quoted: fkntkman })
             }
             break
             case 'pinterest': {
@@ -1830,20 +1844,20 @@ break
 		let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
                 result = anu[Math.floor(Math.random() * anu.length)]
-                isman.sendMessage(m.chat, { image: { url: result }, caption: '➣ Media Url : '+result }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: result }, caption: '➣ Media Url : '+result }, { quoted: fkntkman })
             }
             break
             case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
                 m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, 'apikey') }, caption: 'Generate Random ' + command }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, 'apikey') }, caption: 'Generate Random ' + command }, { quoted: fkntkman })
             }
             break
 	    case 'couple': {
                 m.reply(mess.wait)
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
-                isman.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
-                isman.sendMessage(m.chat, { image: { url: random.female }, caption: `Couple Female` }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: fkntkman })
+                isman.sendMessage(m.chat, { image: { url: random.female }, caption: `Couple Female` }, { quoted: fkntkman })
             }
 	    break
             case 'coffe': case 'kopi': {
@@ -1857,7 +1871,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'wallpaper': {
@@ -1875,7 +1889,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'wikimedia': {
@@ -1893,7 +1907,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'quotesanime': case 'quoteanime': {
@@ -1905,11 +1919,11 @@ break
                 ]
                 let buttonMessage = {
                     text: `~_${result.quotes}_\n\nBy '${result.karakter}', ${result.anime}\n\n- ${result.up_at}`,
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 2
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
 	        case 'motivasi': case 'dilanquote': case 'bucinquote': case 'katasenja': case 'puisi': {
@@ -1919,41 +1933,41 @@ break
                 ]
                 let buttonMessage = {
                     text: anu.result.message,
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 2
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'pencil': case 'logobear': case '3dboxtext': case '3d-neon-light': case '3d-orange-juice': case 'chocolate-cake': case 'strawberry': {
             if (!text) throw `Contoh : ${prefix + command} text`
             m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('botcah', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+                isman.sendMessage(m.chat, { image: { url: api('botcah', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: fkntkman})
 	    }
             break
             case '3dchristmas': case '3ddeepsea': case 'americanflag': case '3dscifi': case '3drainbow': case '3dwaterpipe': case 'halloweenskeleton': case 'sketch': case 'bluecircuit': case 'space': case 'metallic': case 'fiction': case 'greenhorror': case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dcrackedstone': case '3dneonlight': case 'impressiveglitch': case 'naturalleaves': case 'fireworksparkle': case 'matrix': case 'dropwater':  case 'harrypotter': case 'foggywindow': case 'neondevils': case 'christmasholiday': case '3dgradient': case 'blackpink': case 'gluetext': {
                 if (!text) throw `Contoh : ${prefix + command} text`
                 m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+                isman.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: fkntkman})
 	    }
             break
             case 'naruto': {
             if (!text) throw `Contoh : ${prefix + command} text`
             m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('botcah', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+                isman.sendMessage(m.chat, { image: { url: api('botcah', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: fkntkman})
 	    }
 	        break
 	    case 'shadow': case 'romantic': case 'smoke': case 'burnpapper': case 'lovemsg': case 'grassmsg': case 'lovetext': case 'coffecup': case 'butterfly': case 'harrypotter': case 'retrolol': {
                 if (!text) throw 'No Query Text'
                 m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Photo Oxy ${command}` }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Photo Oxy ${command}` }, { quoted: fkntkman })
             }
             break
             case 'ffcover': case 'crossfire': case 'galaxy': case 'glass': case 'neon': case 'beach': case 'blackpink': case 'igcertificate': case 'ytcertificate': {
                 if (!text) throw 'No Query Text'
                 m.reply(mess.wait)
-                isman.sendMessage(m.chat, { image: { url: api('zenz', '/ephoto/' + command, { text: text }, 'apikey') }, caption: `Ephoto ${command}` }, { quoted: m })
+                isman.sendMessage(m.chat, { image: { url: api('zenz', '/ephoto/' + command, { text: text }, 'apikey') }, caption: `Ephoto ${command}` }, { quoted: fkntkman })
             }
             break
 	    case 'nomerhoki': case 'nomorhoki': {
@@ -2282,11 +2296,11 @@ break
                 let buttonMessage = {
                     video: { url: anu.result.video },
                     caption: `Download From ${text}`,
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 5
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'tiktokwm': case 'tiktokwatermark': {
@@ -2300,11 +2314,11 @@ break
                 let buttonMessage = {
                     video: { url: anu.result.video_original },
                     caption: `Download From ${text}`,
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 5
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'tiktokmp3': case 'tiktokaudio': {
@@ -2317,11 +2331,11 @@ break
                 ]
                 let buttonMessage = {
                     text: `Download From ${text}`,
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 2
                 }
-                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
                 isman.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
             }
             break
@@ -2363,11 +2377,11 @@ break
                 let buttonMessage = {
                     video: { url: anu.result.HD || anu.result.SD },
                     caption: util.format(anu.result),
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 5
                 }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
             case 'twittermp3': case 'twitteraudio': {
@@ -2380,11 +2394,11 @@ break
                 let buttonMessage = {
 		    image: { url: anu.result.thumb },
                     caption: util.format(anu.result),
-                    footer: 'Press The Button Below',
+                    footer: 'Isman ♡ Amel',
                     buttons: buttons,
                     headerType: 4
                 }
-                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+                let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
                 isman.sendMessage(m.chat, { audio: { url: anu.result.audio } }, { quoted: msg })
             }
             break
@@ -2392,14 +2406,14 @@ break
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
-                isman.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `➣ Title : ${anu.result.title}`}, { quoted: m })
+                isman.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `➣ Title : ${anu.result.title}`}, { quoted: fkntkman })
             }
             break
 	        case 'pindl': case 'pinterestdl': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/pinterestdl', { url: text }, 'apikey'))
-                isman.sendMessage(m.chat, { video: { url: anu.result }, caption: `Download From ${text}` }, { quoted: m })
+                isman.sendMessage(m.chat, { video: { url: anu.result }, caption: `Download From ${text}` }, { quoted: fkntkman })
             }
             break
             case 'umma': case 'ummadl': {
@@ -2425,10 +2439,10 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 			buttons,
 			headerType: 4
 		    }
-		    isman.sendMessage(m.chat, buttonMessage, { quoted: m })
+		    isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
 		} else if (anu.type == 'image') {
 		    anu.media.map(async (url) => {
-		        isman.sendMessage(m.chat, { image: { url }, caption: `➣ Title : ${anu.title}\n➣ Author : ${anu.author.name}\n➣ Like : ${anu.like}\n➣ Caption : ${anu.caption}` }, { quoted: m })
+		        isman.sendMessage(m.chat, { image: { url }, caption: `➣ Title : ${anu.title}\n➣ Author : ${anu.author.name}\n➣ Like : ${anu.like}\n➣ Caption : ${anu.caption}` }, { quoted: fkntkman })
 		    })
 		}
 	    }
@@ -2438,14 +2452,14 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
         let { ringtone } = require('./lib/scraper')
 		let anu = await ringtone(text)
 		let result = anu[Math.floor(Math.random() * anu.length)]
-		isman.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
+		isman.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: fkntkman })
 	    }
 	    break
 		case 'iqra': {
 		oh = `Contoh : ${prefix + command} 3\n\nIQRA Yang tersedia : 1,2,3,4,5,6`
 		if (!text) throw oh
 		yy = await getBuffer(`https://islamic-api-indonesia.herokuapp.com/api/data/pdf/iqra${text}`)
-		isman.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:m}).catch ((err) => m.reply(oh))
+		isman.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:fkntkman}).catch ((err) => m.reply(oh))
 		}
 		break
 		case 'hadits': case 'hadis': case 'hadist': {
@@ -2496,7 +2510,7 @@ ${id}`)
 
 ( Q.S ${res.result.data.surah.name.transliteration.id} : ${res.result.data.number.inSurah} )`
 		m.reply(txt)
-		isman.sendMessage(m.chat, {audio: { url: res.result.data.audio.primary }, mimetype: 'audio/mpeg'}, { quoted : m })
+		isman.sendMessage(m.chat, {audio: { url: res.result.data.audio.primary }, mimetype: 'audio/mpeg'}, { quoted : fkntkman })
 		}
 		break
 		case 'tafsirsurah': {
@@ -2536,7 +2550,7 @@ ${id}`)
                 fs.unlinkSync(media)
                 if (err) return m.reply(err)
                 let buff = fs.readFileSync(ran)
-                isman.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+                isman.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : fkntkman })
                 fs.unlinkSync(ran)
                 })
                 } else m.reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
@@ -2769,25 +2783,53 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             }
             break
             case 'thanksto': {
-                isman.sendContact(m.chat, global.thanksto, m)
+            reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
+                isman.sendContact(m.chat, global.thanksto, fkntkman)
             }
             break
 		    case 'owner': {
+		    reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
 		        ownerku = fs.readFileSync('./isman/ownerku.mp3')
-                isman.sendMessage(m.chat, {audio: ownerku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
-                isman.sendContact(m.chat, global.owner, m)
+                isman.sendMessage(m.chat, {audio: ownerku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
+                isman.sendContact(m.chat, global.owner, fkntkman)
             }
             break
             case 'pcrnycreat': {
+            reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
                 pcrku = fs.readFileSync('./isman/pcrku.mp3')
-                isman.sendMessage(m.chat, {audio: pcrku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
-                isman.sendContact(m.chat, global.pcrnyacreat, m)
+                isman.sendMessage(m.chat, {audio: pcrku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
+                isman.sendContact(m.chat, global.pcrnyacreat, fkntkman)
             }
             break
             case 'creator': {
+            reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
                 creatku = fs.readFileSync('./isman/creatorku.mp3')
-                isman.sendMessage(m.chat, {audio: creatku, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
-                isman.sendContact(m.chat, global.creator, m)
+                isman.sendMessage(m.chat, {audio: creatku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
+                isman.sendContact(m.chat, global.creator, fkntkman)
             }
             break
             case 'playstore': {
@@ -3052,7 +3094,7 @@ case 'sound159':
 case 'sound160':
 case 'sound161':
 isman_dev = await getBuffer(`https://github.com/DGXeon/Tiktokmusic-API/raw/master/tiktokmusic/${command}.mp3`)
-await isman.sendMessage(m.chat, { audio: isman_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+await isman.sendMessage(m.chat, { audio: isman_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: fkntkman })     
 break
             case 'drakor': {
             if (!text) throw `Contoh : ${prefix + command} love`
@@ -3072,8 +3114,15 @@ break
             
             
              case 'list': case 'menu': case 'help': case '?': {
+                reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                isman.sendMessage(m.chat, reactionMessage)
                 menu = fs.readFileSync('./isman/menu.mp3')
-                isman.sendMessage(m.chat, {audio: menu, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+                isman.sendMessage(m.chat, {audio: menu, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
                 menuku = fs.readFileSync('./lib/isman.jpg')
                 isman.sendMessage(m.chat, { image: menuku, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Ada Yang Bisa Saya Bantu Kak ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
 
@@ -3426,7 +3475,7 @@ break
 │
 └───────⭓
 
-ISMAN BOT 2022` }, { quoted: m })
+ISMAN BOT 2022` }, { quoted: fkntkman })
             }
             break
             

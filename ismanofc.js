@@ -157,9 +157,9 @@ async function startisman() {
                 }
 
                 if (anu.action == 'add') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}` })
+                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Selamat Datang Di Group ${metadata.subject}\n\nTolong Intro Dulu Yah Kak @${num.split("@")[0]}\n\nNama:.....\n\nAsal:.....\n\nTinggal:.....\n\nKelas:.....\n\nUmur:.....\n\nAgama:.....\n\nStatus:....\n\n Semoga Betah Yah Di Group ${metadata.subject}` })
                 } else if (anu.action == 'remove') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split("@")[0]} Leaving To ${metadata.subject}` })
+                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Selamat Tinggal Kak @${num.split("@")[0]}\n\nUdah meninggalkan Group ${metadata.subject}` })
                 } else if (anu.action == 'promote') {
                     isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Promote From ${metadata.subject}` })
                 } else if (anu.action == 'demote') {

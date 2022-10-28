@@ -15,6 +15,7 @@ global.APIKeys = {
 // NAMBAH BOLEH HAPUS JANGAN -_-
 global.creator = ['6282237949722']
 global.pcrnyacreat = ['6288972720297']
+global.ownernomer = "6282237949722"
 global.owner = ['6282237949722','6288972720297','62895328935760','6285255312224','628985479521']
 global.thanksto = ['6282237949722','62895328935760','6285255312224','628985479521']
 global.premium = ['6282237949722']
