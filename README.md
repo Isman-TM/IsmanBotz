@@ -2,7 +2,7 @@
 ## Bot Whatsapp
 
 <p align="center">
-	<img src="https://telegra.ph/file/c7678f1c322c7bd014fce.jpg" style="margin-left: auto;margin-right: auto;display: block;">
+	<img src="https://telegra.ph/file/7d87bf572c534773c9975.jpg" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 
 ## Github
