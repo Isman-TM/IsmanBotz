@@ -45,6 +45,6 @@ Click the deploy icon below !
 > npm start
 ```
 
-# My Sosial
-- [Group Info Update](https://chat.whatsapp.com/I9lQWN2EoUU3nLTC0TriJO)
-- [Whatsapp ](https://wa.me/6282237949722)
+
+
+
