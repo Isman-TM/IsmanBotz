@@ -1,6 +1,6 @@
-// Klo Udah Di Kasih Free Minimal Nama Yutup ismanOfc Ditaruh Yah :)
+// Tolong Bantu perbaiki fitur yang error:)
 
-require('./config')
+require('./chi')
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
@@ -575,7 +575,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             break
 	    case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
   goblok = fs.readFileSync('./isman/donasi.jpg')
-                isman.sendMessage(m.chat, { image: goblok, caption: `*Halo Kak 😁*\n\n Bot Rental Prices\n➣ 15k Per Group via Shoppepay 1 Month\n➣ 20k via pulsa 1 Month\n\n\nhttps://wa.me/6282284928416 (Owner)\n\nDonate For Me : \n\n➣ Saweria : https://saweria.co/nanang13` }, { quoted: m })
+                isman.sendMessage(m.chat, { image: goblok, caption: `*Halo Kak 😁*\n\n➣ 10K via pulsa 1 Month: 6282218677120` }, { quoted: fkntkman })
             }
             case 'subscribe':{
             smeme = fs.readFileSync('./isman/subscribe.mp4')
@@ -613,7 +613,7 @@ case 'runtime': {
                 neww = performance.now()
                 oldd = performance.now()
                 respon = `
-Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : 3 week, 18 days, ${runtime(process.uptime())}͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : ${runtime(process.uptime())}͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
 
 💻 Info Server
 RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
@@ -1781,7 +1781,7 @@ break
 	    case 'ytmp3': case 'ytaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=023l1qhbpk`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp3?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `ytmp4 ${text}`, buttonText: {displayText: '► Video'}, type: 1}
                 ]
@@ -1792,13 +1792,13 @@ break
                     headerType: 2
                 }
                 let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-                isman.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg'}, { quoted: msg })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg'}, { quoted: fkntkman })
             }
             break
             case 'ytmp4': case 'ytvideo': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=023l1qhbpk`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `ytmp3 ${text}`, buttonText: {displayText: 'Audio'}, type: 1}
                 ]
@@ -2288,13 +2288,13 @@ break
            case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
                 ]
                 let buttonMessage = {
-                    video: { url: anu.result.video },
+                	video: { url: anu.result.video },
                     caption: `Download From ${text}`,
                     footer: 'Isman ♡ Amel',
                     buttons: buttons,
@@ -2306,7 +2306,7 @@ break
             case 'tiktokwm': case 'tiktokwatermark': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2324,7 +2324,7 @@ break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://botcahx.ddns.net/api/dowloader/tikok?url=${text}`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
@@ -2336,7 +2336,7 @@ break
                     headerType: 2
                 }
                 let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-                isman.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: fkntkman })
             }
             break
 	        case 'instagram': case 'ig': case 'igdl': {
@@ -2356,15 +2356,15 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
                 let msg = await isman.sendImage(m.chat, anu.result.img, `➣ Title : ${anu.result.lagu}\n➣ Album : ${anu.result.album}\n➣ Singer : ${anu.result.penyanyi}\n➣ Publish : ${anu.result.publish}\n➣ Lirik :\n${anu.result.lirik.result}`, m)
-                isman.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: fkntkman })
             }
             break
             case 'soundcloud': case 'scdl': {
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
+                let anu = await fetchJson('https://saipulanuar.ga/api/download/soundcloud?url=${text}&apikey=a2Rly5Ci', { url: isUrl(text)[0] }, 'apikey')
                 let msg = await isman.sendImage(m.chat, anu.result.thumb, `➣ Title : ${anu.result.title}\n➣ Url : ${isUrl(text)[0]}`)
-                isman.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.download }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: fkntkman })
             }
             break
 	        case 'twitdl': case 'twitter': {
@@ -2399,7 +2399,7 @@ break
                     headerType: 4
                 }
                 let msg = await isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-                isman.sendMessage(m.chat, { audio: { url: anu.result.audio } }, { quoted: msg })
+                isman.sendMessage(m.chat, { audio: { url: anu.result.audio } }, { quoted: fkntkman })
             }
             break
 	        case 'fbdl': case 'fb': case 'facebook': {
@@ -2790,7 +2790,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     }
                 }
                 isman.sendMessage(m.chat, reactionMessage)
-                isman.sendContact(m.chat, global.thanksto, fkntkman)
+                isman.sendContact(m.chat, ['6282237949722','62895328935760','6285255312224','628985479521'], fkntkman)
             }
             break
 		    case 'owner': {
@@ -2816,7 +2816,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 isman.sendMessage(m.chat, reactionMessage)
                 pcrku = fs.readFileSync('./isman/pcrku.mp3')
                 isman.sendMessage(m.chat, {audio: pcrku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
-                isman.sendContact(m.chat, global.pcrnyacreat, fkntkman)
+                isman.sendContact(m.chat, ['6288972720297'], fkntkman)
             }
             break
             case 'creator': {
@@ -2829,7 +2829,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 isman.sendMessage(m.chat, reactionMessage)
                 creatku = fs.readFileSync('./isman/creatorku.mp3')
                 isman.sendMessage(m.chat, {audio: creatku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
-                isman.sendContact(m.chat, global.creator, fkntkman)
+                isman.sendContact(m.chat, ['6281337106240'], fkntkman)
             }
             break
             case 'playstore': {
@@ -2932,170 +2932,6 @@ let capt = `➣ Title: ${judul}
             m.reply(capt)
             }
             break
-case 'sound1':
-case 'sound2':
-case 'sound3':
-case 'sound4':
-case 'sound5':
-case 'sound6':
-case 'sound7':
-case 'sound8':
-case 'sound9':
-case 'sound10':
-case 'sound11':
-case 'sound12':
-case 'sound13':
-case 'sound14':
-case 'sound15':
-case 'sound16':
-case 'sound17':
-case 'sound18':
-case 'sound19':
-case 'sound20':
-case 'sound21':
-case 'sound22':
-case 'sound23':
-case 'sound24':
-case 'sound25':
-case 'sound26':
-case 'sound27':
-case 'sound28':
-case 'sound29':
-case 'sound30':
-case 'sound31':
-case 'sound32':
-case 'sound33':
-case 'sound34':
-case 'sound35':
-case 'sound36':
-case 'sound37':
-case 'sound38':
-case 'sound39':
-case 'sound40':
-case 'sound41':
-case 'sound42':
-case 'sound43':
-case 'sound44':
-case 'sound45':
-case 'sound46':
-case 'sound47':
-case 'sound48':
-case 'sound49':
-case 'sound50':
-case 'sound51':
-case 'sound52':
-case 'sound53':
-case 'sound54':
-case 'sound55':
-case 'sound56':
-case 'sound57':
-case 'sound58':
-case 'sound59':
-case 'sound60':
-case 'sound61':
-case 'sound62':
-case 'sound63':
-case 'sound64':
-case 'sound65':
-case 'sound66':
-case 'sound67':
-case 'sound68':
-case 'sound69':
-case 'sound70':
-case 'sound71':
-case 'sound72':
-case 'sound73':
-case 'sound74':
-case 'sound75':
-case 'sound76':
-case 'sound77':
-case 'sound78':
-case 'sound79':
-case 'sound80':
-case 'sound81':
-case 'sound82':
-case 'sound83':
-case 'sound84':
-case 'sound85':
-case 'sound86':
-case 'sound87':
-case 'sound88':
-case 'sound89':
-case 'sound90':
-case 'sound91':
-case 'sound92':
-case 'sound93':
-case 'sound94':
-case 'sound95':
-case 'sound96':
-case 'sound97':
-case 'sound98':
-case 'sound99':
-case 'sound100':
-case 'sound101':
-case 'sound102':
-case 'sound103':
-case 'sound104':
-case 'sound105':
-case 'sound106':
-case 'sound107':
-case 'sound108':
-case 'sound109':
-case 'sound110':
-case 'sound111':
-case 'sound112':
-case 'sound113':
-case 'sound114':
-case 'sound115':
-case 'sound116':
-case 'sound117':
-case 'sound118':
-case 'sound119':
-case 'sound120':
-case 'sound121':
-case 'sound122':
-case 'sound123':
-case 'sound124':
-case 'sound125':
-case 'sound126':
-case 'sound127':
-case 'sound128':
-case 'sound129':
-case 'sound130':
-case 'sound131':
-case 'sound132':
-case 'sound133':
-case 'sound134':
-case 'sound135':
-case 'sound136':
-case 'sound137':
-case 'sound138':
-case 'sound139':
-case 'sound140':
-case 'sound141':
-case 'sound142':
-case 'sound143':
-case 'sound144':
-case 'sound145':
-case 'sound146':
-case 'sound147':
-case 'sound148':
-case 'sound149':
-case 'sound150':
-case 'sound151':
-case 'sound152':
-case 'sound153':
-case 'sound154':
-case 'sound155':
-case 'sound156':
-case 'sound157':
-case 'sound158':
-case 'sound159':
-case 'sound160':
-case 'sound161':
-isman_dev = await getBuffer(`https://github.com/DGXeon/Tiktokmusic-API/raw/master/tiktokmusic/${command}.mp3`)
-await isman.sendMessage(m.chat, { audio: isman_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: fkntkman })     
-break
             case 'drakor': {
             if (!text) throw `Contoh : ${prefix + command} love`
             let res = await fetchJson(api('zenz', '/webzone/drakor', { query: text }, 'apikey'))
@@ -3110,6 +2946,12 @@ break
             isman.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
             break
+            case 'asupan': {
+            m.reply(mess.wait)
+          buffer = 'https://fax-home.herokuapp.com/api/asupan/random?apikey=925b04ib0j'
+          isman.sendMessage(from, {video:{url:buffer}, mimetype:"video/mp4", caption:"Success"}, {quoted:fkntkman})
+             }
+             break
             
             
             
@@ -3139,16 +2981,16 @@ break
 │➣ ${prefix}ephemeral [option]
 │➣ ${prefix}setppgc [image]
 │➣ ${prefix}setname [text]
-│➣ ${prefix}setdesc [text]
+│➣ ${prefix}setdesc [text] 
 │➣ ${prefix}group [option]
-│➣ ${prefix}editinfo [option]
-│➣ ${prefix}add @user
-│➣ ${prefix}kick @user
-│➣ ${prefix}hidetag [text]
-│➣ ${prefix}tagall [text]
-│➣ ${prefix}totag [reply]
-│➣ ${prefix}antilink [on/off]
-│➣ ${prefix}mute [on/off]
+│➣ ${prefix}editinfo [option] 
+│➣ ${prefix}add @user 
+│➣ ${prefix}kick @user 
+│➣ ${prefix}hidetag [text] 
+│➣ ${prefix}tagall [text] 
+│➣ ${prefix}totag [reply] 
+│➣ ${prefix}antilink [on/off] 
+│➣ ${prefix}mute [on/off] 
 │➣ ${prefix}promote @user
 │➣ ${prefix}demote @user
 │➣ ${prefix}vote [text]
@@ -3161,14 +3003,14 @@ break
 
 ┌──⭓「 *Webzone Menu* 」⭓
 │
-│➣ ${prefix}playstore
-│➣ ${prefix}gsmarena
-│➣ ${prefix}jadwalbioskop
-│➣ ${prefix}nowplayingbioskop
-│➣ ${prefix}aminio
-│➣ ${prefix}wattpad
-│➣ ${prefix}webtoons
-│➣ ${prefix}drakor
+│➣ ${prefix}playstore x
+│➣ ${prefix}gsmarena x
+│➣ ${prefix}jadwalbioskop x
+│➣ ${prefix}nowplayingbioskop x
+│➣ ${prefix}aminio x
+│➣ ${prefix}wattpad x
+│➣ ${prefix}webtoons x
+│➣ ${prefix}drakor x
 │
 └───────⭓
 
@@ -3177,18 +3019,18 @@ break
 │➣ ${prefix}tiktoknowm [url]
 │➣ ${prefix}tiktokwm [url]
 │➣ ${prefix}tiktokmp3 [url]
-│➣ ${prefix}instagram [url]
-│➣ ${prefix}twitter [url]
-│➣ ${prefix}twittermp3 [url]
-│➣ ${prefix}facebook [url]
-│➣ ${prefix}pinterestdl [url]
-│➣ ${prefix}ytmp3 [url]
-│➣ ${prefix}ytmp4 [url]
-│➣ ${prefix}getmusic [query]
-│➣ ${prefix}getvideo [query]
-│➣ ${prefix}umma [url]
-│➣ ${prefix}joox [query]
-│➣ ${prefix}soundcloud [url]
+│➣ ${prefix}instagram [url] x
+│➣ ${prefix}twitter [url] x
+│➣ ${prefix}twittermp3 [url] x
+│➣ ${prefix}facebook [url] x
+│➣ ${prefix}pinterestdl [url] x
+│➣ ${prefix}ytmp3 [url] 
+│➣ ${prefix}ytmp4 [url] 
+│➣ ${prefix}getmusic [query] 
+│➣ ${prefix}getvideo [query] 
+│➣ ${prefix}umma [url] x
+│➣ ${prefix}joox [query] x
+│➣ ${prefix}soundcloud [url] x
 │
 └───────⭓
  
@@ -3305,12 +3147,6 @@ break
   
 ┌──⭓「 *Fun Menu* 」⭓
 │
-│➣ ${prefix}simih
-│➣ ${prefix}halah
-│➣ ${prefix}hilih
-│➣ ${prefix}huluh
-│➣ ${prefix}heleh
-│➣ ${prefix}holoh
 │➣ ${prefix}jadian
 │➣ ${prefix}jodohku
 │➣ ${prefix}delttt
@@ -3322,41 +3158,6 @@ break
 │
 └───────⭓
   
-┌──⭓「 *Primbon Menu* 」⭓
-│
-│➣ ${prefix}nomorhoki
-│➣ ${prefix}artimimpi
-│➣ ${prefix}artinama
-│➣ ${prefix}ramaljodoh
-│➣ ${prefix}ramaljodohbali
-│➣ ${prefix}suamiistri
-│➣ ${prefix}ramalcinta
-│➣ ${prefix}cocoknama
-│➣ ${prefix}pasangan
-│➣ ${prefix}jadiannikah
-│➣ ${prefix}sifatusaha
-│➣ ${prefix}rezeki
-│➣ ${prefix}pekerjaan
-│➣ ${prefix}nasib
-│➣ ${prefix}penyakit
-│➣ ${prefix}tarot
-│➣ ${prefix}fengshui
-│➣ ${prefix}haribaik
-│➣ ${prefix}harisangar
-│➣ ${prefix}harisial
-│➣ ${prefix}nagahari
-│➣ ${prefix}arahrezeki
-│➣ ${prefix}peruntungan
-│➣ ${prefix}weton
-│➣ ${prefix}karakter
-│➣ ${prefix}keberuntungan
-│➣ ${prefix}memancing
-│➣ ${prefix}masasubur
-│➣ ${prefix}zodiak
-│➣ ${prefix}shio
-│
-└───────⭓
-
 ┌──⭓「 *Onvert Menu* 」⭓
 │
 │➣ ${prefix}attp
@@ -3369,10 +3170,10 @@ break
 │➣ ${prefix}emojimix2
 │➣ ${prefix}tovideo
 │➣ ${prefix}togif
-│➣ ${prefix}tourl
-│➣ ${prefix}tovn
-│➣ ${prefix}tomp3
-│➣ ${prefix}toaudio
+│➣ ${prefix}tourl x
+│➣ ${prefix}tovn x
+│➣ ${prefix}tomp3 x
+│➣ ${prefix}toaudio x
 │➣ ${prefix}ebinary
 │➣ ${prefix}dbinary
 │➣ ${prefix}styletext
@@ -3393,6 +3194,13 @@ break
 │➣ ${prefix}listgc
 │➣ ${prefix}listonline
 │➣ ${prefix}speedtest
+│
+└───────⭓
+
+┌──⭓「 *Asupan && nfsw* 」⭓
+│
+│➣ ${prefix}asupan
+│➣ ${prefix}nfsw
 │
 └───────⭓
 
@@ -3424,12 +3232,6 @@ break
 │➣ ${prefix}hadist
 │➣ ${prefix}alquran
 │➣ ${prefix}tafsirsurah
-│
-└───────⭓
-
-┌──⭓「 *Sound* 」⭓
-│
-│➣ ${prefix}sound [1-161]
 │
 └───────⭓
 

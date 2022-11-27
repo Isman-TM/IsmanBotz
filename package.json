@@ -18,7 +18,7 @@
     "bot-md",
     "multi-device"
   ],
-  "author": "XaviorOfc.",
+  "author": "IsmanTM.",
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/baileys": "^4.1.0",
