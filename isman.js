@@ -69,6 +69,7 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
         const pushname = m.pushName || "No Name"
         const botNumber = await isman.decodeJid(isman.user.id)
         const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+        const isCreatorku = [botNumber, ...['6281337106240','6288972720297']].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const itsMe = m.sender == botNumber ? true : false
         const text = q = args.join(" ")
         const fatkuns = (m.quoted || m)
@@ -259,7 +260,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = kuismath[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await m.reply(`🎮 Kuis Matematika  🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
+                await m.reply(`Kuis Matematika\n\nJawaban Benar\n\nIngin bermain lagi? kirim ${prefix}math mode`)
                 delete kuismath[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -268,7 +269,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakgambar[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `Tebak Gambar\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakgambar[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -277,7 +278,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkata[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `Tebak Kata\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakkata[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -287,7 +288,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             jawaban = caklontong[m.sender.split('@')[0]]
 	    deskripsi = caklontong_desk[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `Cak Lontong\n\nJawaban Benar\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete caklontong[m.sender.split('@')[0]]
 		delete caklontong_desk[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
@@ -297,7 +298,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkalimat[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `Tebak Kalimat\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -306,7 +307,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklirik[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `Tebak Lirik\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaklirik[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -315,7 +316,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaktebakan[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `Tebak Tebakan\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaktebakan[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -1751,33 +1752,6 @@ break
             }
             break
            
-           case 'djsadold': {
-           let yts = require("yt-search")
-                let search = await yts('https://youtu.be/1GXmxcrudnk')
-                let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
-                let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '♫ Audio'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '► Video'}, type: 1}
-                ]
-                let buttonMessage = {
-                    image: { url: anu.thumbnail },
-                    caption: `
-➣ *Title* : DJ SAD MANTAN TERINDAH OLD
-➣ *No Wa*: 082237949722
-➣ *Duration* : 31 Second
-➣ *Viewers* : 27,4 rb views
-➣ *Author* : Isman
-➣ *Channel* : https://youtube.com/c/ISMANFF
-➣ *Description* : Jangan Lupa Subscribe yah
-➣ *Url* : ${anu.url}`,
-                    footer: global.author1,
-                    buttons: buttons,
-                    headerType: 4
-                }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-            }
-            break
-           
 	    case 'ytmp3': case 'ytaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
@@ -1971,7 +1945,7 @@ break
             }
             break
 	    case 'nomerhoki': case 'nomorhoki': {
-                if (!Number(text)) throw `Contoh : ${prefix + command} 6282237949722`
+                if (!Number(text)) throw `Contoh : ${prefix + command} 6288972720297`
                 let anu = await primbon.nomer_hoki(Number(text))
                 if (anu.status == false) return m.reply(anu.message)
                 isman.sendText(m.chat, `➣ *Nomor HP :* ${anu.message.nomer_hp}\n➣ *Angka Shuzi :* ${anu.message.angka_shuzi}\n➣ *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\n➣ *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
@@ -2288,31 +2262,13 @@ break
            case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
-                let buttons = [
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
-                ]
-                let buttonMessage = {
-                	video: { url: anu.result.video },
-                    caption: `Download From ${text}`,
-                    footer: 'Isman ♡ Amel',
-                    buttons: buttons,
-                    headerType: 5
-                }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-            }
-            break
-            case 'tiktokwm': case 'tiktokwatermark': {
-                if (!text) throw 'Masukkan Query Link!'
-                m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
                 ]
                 let buttonMessage = {
-                    video: { url: anu.result.video_original },
+                    video: { url: anu.result.video },
                     caption: `Download From ${text}`,
                     footer: 'Isman ♡ Amel',
                     buttons: buttons,
@@ -2324,10 +2280,10 @@ break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}&apikey=a2Rly5Ci`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     text: `Download From ${text}`,
@@ -2790,7 +2746,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     }
                 }
                 isman.sendMessage(m.chat, reactionMessage)
-                isman.sendContact(m.chat, ['6282237949722','62895328935760','6285255312224','628985479521'], fkntkman)
+                isman.sendContact(m.chat, ['6281337106240','62895328935760','6285255312224','628985479521'], fkntkman)
             }
             break
 		    case 'owner': {
@@ -2807,6 +2763,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             }
             break
             case 'pcrnycreat': {
+            if (!isCreatorku) throw mess.creator
             reactionMessage = {
                     react: {
                         text: '🤖',
