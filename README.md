@@ -34,7 +34,7 @@ Click the deploy icon below !
 > git clone https://github.com/Isman-TM/IsmanV2.git
 > cd IsmanV2
 > yarn install
-> npm start
+> node ismanofc.js
 ```
 
 ## RDP/VPS USER
