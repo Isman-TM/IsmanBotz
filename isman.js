@@ -1374,6 +1374,16 @@ break
                 isman.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
+            case 'request': {
+            if (!text) throw `Masukan parameter text\n*Contoh:*\n${prefix+command} Req fitur antibucin kak`
+            var teks = `*| REQUEST FITUR |*`
+            var teks1 = `\n\nNomor : @${me.split('@')[0]}\nPesan : ${text}`
+            var teks2 = `\n\nSucces send to creator`
+            var nmrkuisman = '6281337106240@s.whatsapp.net'
+           isman.sendMessage(nmrkuisman, {text: teks + teks1, mentions:[sender]}, {quoted:fkntkman})
+           isman.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[sender]}, {quoted:fkntkman})
+           }
+           break
             case 'report': case 'lapor': {
             	if (!text) throw `Example : ${prefix + command} Lapor Ada Fitur Yang error`
                let ownernya = ownernomer + '@s.whatsapp.net'
@@ -1382,7 +1392,7 @@ break
                let ments = [ownernya, me]
                let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS LAPORANNYA' }, type: 1 }]
             await isman.sendButtonText(ownernya, buttons, pjtxt, namaowner, m, {mentions: ments})
-            let akhji = `Laporan Telah Terkirim\nKe Owner @${ownernya.split('@')[0]}\n*Terima Kasih Laporannya🙏*\n_Nomermu Akan Terblokir_\n_Jika Laporan Hanya Di Buat Buat_`
+            let akhji = `Laporan Telah Terkirim\nKe Creator @${ownernya.split('@')[0]}\n*Terima Kasih Laporannya🙏*\n_Nomermu Akan Terblokir_\n_Jika Laporan Hanya Di Buat Buat_`
             await isman.sendButtonText(m.chat, buttons, akhji, namaowner, m, {mentions: ments})
             }
             break
@@ -1914,8 +1924,33 @@ break
                 isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
             }
             break
+            case 'nulis': {
+            if (!text) throw `Contoh : ${prefix + command} text mu`
+            m.reply(mess.wait)
+            var mel = `https://saipulanuar.ga/api/maker/nulis?text=${text}&apikey=a2Rly5Ci`
+            isman.sendMessage(m.chat, { image:{url:mel}, caption:'Done kak'}, {quoted:fkntkman})
+        }
+            break
+            case 'girlneko': {
+            if (!text) throw `Contoh : ${prefix + command} Masukkan text1&text2\nContoh? girlneko saya&anda`
+            m.reply(mess.wait)
+            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/girlneko?text1=${text[1]}&text2=${text[2]}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            }
+            break
+            case 'sadboy': {
+            if (!text) throw `Contoh : ${prefix + command} Masukkan text1&text2\nContoh? sadboy saya&anda`
+            m.reply(mess.wait)
+            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/sadboy?text1=${text[1]}&text2=${text[2]}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            }
+            break
+            case 'kaneki': case 'lolimaker': {
+            if (!text) throw `Contoh : ${prefix + command} namaku`
+            m.reply(mess.wait)
+            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/${command}?nama=${text}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            }
+            break
             case 'pencil': case 'logobear': case '3dboxtext': case '3d-neon-light': case '3d-orange-juice': case 'chocolate-cake': case 'strawberry': {
-            if (!text) throw `Contoh : ${prefix + command} text`
+            if (!text) throw `Contoh : ${prefix + command} namaku`
             m.reply(mess.wait)
                 isman.sendMessage(m.chat, { image: { url: api('botcah', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: fkntkman})
 	    }
@@ -3068,6 +3103,11 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}3d-orange-juice
 │➣ ${prefix}chocolate-cake
 │➣ ${prefix}strawberry
+│➣ ${prefix}nulis [text]
+│➣ ${prefix}girlneko
+│➣ ${prefix}sadboy
+│➣ ${prefix}kaneki
+│➣ ${prefix}lolimaker
 │
 └───────⭓
   
@@ -3150,6 +3190,8 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}listpc
 │➣ ${prefix}listgc
 │➣ ${prefix}listonline
+│➣ ${prefix}request
+│➣ ${prefix}report
 │➣ ${prefix}speedtest
 │
 └───────⭓
