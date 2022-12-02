@@ -14,7 +14,7 @@
 
 Click the deploy icon below !
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Isman-TM/IsmanV2)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Isman-TM/IsmanBotz)
 
 ```bash
  > heroku/nodejs
@@ -31,7 +31,7 @@ Click the deploy icon below !
 > pkg install nodejs
 > pkg install ffmpeg
 > termux-setup-storage
-> git clone https://github.com/Isman-TM/IsmanV2.git
+> git clone https://github.com/Isman-TM/IsmanBotz.git
 > cd IsmanV2
 > yarn install
 > node ismanofc.js
@@ -39,7 +39,7 @@ Click the deploy icon below !
 
 ## RDP/VPS USER
 ```bash 
-> git clone https://github.com/isman-IM/IsmanV2.git
+> git clone https://github.com/Isman-TM/IsmanBotz.git
 > cd IsmanV2
 > npm install
 > npm start
