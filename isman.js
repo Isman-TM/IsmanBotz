@@ -56,6 +56,7 @@ let caklontong_desk = db.data.game.lontong_desk = []
 let tebakkalimat = db.data.game.kalimat = []
 let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
+let tekateki = db.data.game.teki = []
 let vote = db.data.others.vote = []
 
 module.exports = isman = async (isman, m, chatUpdate, store) => {
@@ -247,11 +248,20 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (isWin || isSurender) delete _family100['family100'+m.chat]
         }
 
+        if (tekateki.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = tekateki[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await isman.sendButtonText(m.chat, [{ buttonId: 'teka teki', buttonText: { displayText: 'Teka Teki' }, type: 1 }], `Teka Teki\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                delete tekateki[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
+
         if (tebaklagu.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `Tebak Lagu\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebaklagu[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -271,6 +281,15 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `Tebak Gambar\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
                 delete tebakgambar[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
+
+        if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = tebaktebakan[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `Tebak Tebakan\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                delete tebaktebakan[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
 
@@ -666,8 +685,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 
 ┌──⭓「 𝙎𝙘𝙧𝙞𝙥𝙩 」⭓
 │
-│➣ ${prefix}scviagithub1
-│➣ ${prefix}scviagithub2
+│➣ ${prefix}scviagithub
 │
 └───────⭓
 
@@ -687,12 +705,8 @@ ISMAN 2022` }, { quoted: fkntkman })
                 m.reply('وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n\n_waalaikumussalam wr.wb._')
             }
             break
-            case 'scviagithub1': {
-                m.reply('https://github.com/Isman-TM/IsmanV1')
-            }
-            break
-            case 'scviagithub2': {
-                m.reply('https://github.com/Isman-TM/IsmanV2')
+            case 'scviagithub': {
+                m.reply('https://github.com/Isman-TM/IsmanBotz')
             }
             break
             case 'bot': {
@@ -742,8 +756,25 @@ isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quote
             tex = m.quoted ? m.quoted.text ? m.quoted.text : q ? q : m.text : q ? q : m.text
             m.reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
             break
+            case 'teka': {
+                 if (args[0] === 'teki') {
+                    if (tekateki.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tekateki.json')
+                    let result = anu[Math.floor(Math.random() * anu.length)]
+                    isman.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : 60s`, m).then(() => {
+                    tekateki[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (tekateki.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.jawaban)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'teka teki', buttonText: { displayText: 'Teka Teki' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaktebakan[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
+                    delete tekateki[m.sender.split('@')[0]]
+                    }
+                 }
+             }     
+            break       
             case 'tebak': {
-                if (!text) throw `Contoh : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6.lontong`
+                if (!text) throw `Contoh : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6. lontong\n7. tebakan`
                 if (args[0] === "lagu") {
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                     let anu = await fetchJson('https://fatiharridho.github.io/tebaklagu.json')
@@ -771,6 +802,19 @@ isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quote
                     isman.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakgambar[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebakgambar[m.sender.split('@')[0]]
                     }
+                 } else if (args[0] === 'tebakan') {
+                    if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebaktebakan.json')
+                    let result = anu[Math.floor(Math.random() * anu.length)]
+                    isman.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : 60s`, m).then(() => {
+                    tebaktebakan[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.jawaban)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaktebakan[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
+                    delete tebaktebakan[m.sender.split('@')[0]]
+                    } 
                 } else if (args[0] === 'kata') {
                     if (tebakkata.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                     let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkata.json')
@@ -1374,16 +1418,6 @@ break
                 isman.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
-            case 'request': {
-            if (!text) throw `Masukan parameter text\n*Contoh:*\n${prefix+command} Req fitur antibucin kak`
-            var teks = `*| REQUEST FITUR |*`
-            var teks1 = `\n\nNomor : @${me.split('@')[0]}\nPesan : ${text}`
-            var teks2 = `\n\nSucces send to creator`
-            var nmrkuisman = '6281337106240@s.whatsapp.net'
-           isman.sendMessage(nmrkuisman, {text: teks + teks1, mentions:[sender]}, {quoted:fkntkman})
-           isman.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[sender]}, {quoted:fkntkman})
-           }
-           break
             case 'report': case 'lapor': {
             	if (!text) throw `Example : ${prefix + command} Lapor Ada Fitur Yang error`
                let ownernya = ownernomer + '@s.whatsapp.net'
@@ -1765,7 +1799,7 @@ break
 	    case 'ytmp3': case 'ytaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp3?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp3?url=${text}`)
                 let buttons = [
                     {buttonId: `ytmp4 ${text}`, buttonText: {displayText: '► Video'}, type: 1}
                 ]
@@ -1782,7 +1816,7 @@ break
             case 'ytmp4': case 'ytvideo': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/ytmp4?url=${text}`)
                 let buttons = [
                     {buttonId: `ytmp3 ${text}`, buttonText: {displayText: 'Audio'}, type: 1}
                 ]
@@ -1927,26 +1961,28 @@ break
             case 'nulis': {
             if (!text) throw `Contoh : ${prefix + command} text mu`
             m.reply(mess.wait)
-            var mel = `https://saipulanuar.ga/api/maker/nulis?text=${text}&apikey=a2Rly5Ci`
-            isman.sendMessage(m.chat, { image:{url:mel}, caption:'Done kak'}, {quoted:fkntkman})
+            var mel1 = `https://saipulanuar.ga/api/maker/nulis?text=${text}`
+            isman.sendMessage(m.chat, { image:{url:mel1}, caption:'Done kak'}, {quoted:fkntkman})
         }
             break
             case 'girlneko': {
             if (!text) throw `Contoh : ${prefix + command} Masukkan text1&text2\nContoh? girlneko saya&anda`
             m.reply(mess.wait)
-            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/girlneko?text1=${text[1]}&text2=${text[2]}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            var mel2 = `https://ziy.herokuapp.com/api/maker/girlneko?text1=${args[0]}&text2=${args[1]}&apikey=xZiyy`
+            isman.sendMessage(m.chat, { image:{url:mel2}, caption:'Done kak'}, {quoted:fkntkman})
             }
             break
             case 'sadboy': {
             if (!text) throw `Contoh : ${prefix + command} Masukkan text1&text2\nContoh? sadboy saya&anda`
             m.reply(mess.wait)
-            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/sadboy?text1=${text[1]}&text2=${text[2]}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            var mel3 = `https://ziy.herokuapp.com/api/maker/sadboy?text1=${args[0]}&text2=${args[1]}&apikey=xZiyy`
+            isman.sendMessage(m.chat, { image:{url:mel3}, caption:'Done kak'}, {quoted:fkntkman})
             }
             break
             case 'kaneki': case 'lolimaker': {
             if (!text) throw `Contoh : ${prefix + command} namaku`
             m.reply(mess.wait)
-            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/${command}?nama=${text}&apikey=xZiyy`}, caption:"Done Kak", mentions:[sender]},{quoted:fkntkman})
+            isman.sendMessage(m.chat, {image:{url:`https://ziy.herokuapp.com/api/maker/${command}?nama=${text}&apikey=xZiyy`}, caption:"Done Kak"},{quoted:fkntkman})
             }
             break
             case 'pencil': case 'logobear': case '3dboxtext': case '3d-neon-light': case '3d-orange-juice': case 'chocolate-cake': case 'strawberry': {
@@ -2297,7 +2333,7 @@ break
            case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2315,7 +2351,7 @@ break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}&apikey=a2Rly5Ci`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}`)
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2353,7 +2389,7 @@ break
             case 'soundcloud': case 'scdl': {
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
-                let anu = await fetchJson('https://saipulanuar.ga/api/download/soundcloud?url=${text}&apikey=a2Rly5Ci', { url: isUrl(text)[0] }, 'apikey')
+                let anu = await fetchJson('https://saipulanuar.ga/api/download/soundcloud?url=${text}', { url: isUrl(text)[0] }, 'apikey')
                 let msg = await isman.sendImage(m.chat, anu.result.thumb, `➣ Title : ${anu.result.title}\n➣ Url : ${isUrl(text)[0]}`)
                 isman.sendMessage(m.chat, { audio: { url: anu.result.download }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: fkntkman })
             }
@@ -2938,12 +2974,11 @@ let capt = `➣ Title: ${judul}
             isman.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
             break
-            case 'asupan': {
+            case 'cum':case 'poke':case 'kiss':case 'pussy':case 'hentai':{
             m.reply(mess.wait)
-          buffer = 'https://fax-home.herokuapp.com/api/asupan/random?apikey=925b04ib0j'
-          isman.sendMessage(from, {video:{url:buffer}, mimetype:"video/mp4", caption:"Success"}, {quoted:fkntkman})
-             }
-             break
+            isman.sendMessage(m.chat, { image: { url: `https://api.lolhuman.xyz/api/random2/${command}?apikey=SadTeams`}, caption: `Nih ${command}📸` }, { quoted: fkntkman})
+            }
+            break
             
             
             
@@ -3060,6 +3095,12 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}nekos (nsfw)
 │➣ ${prefix}trap (nsfw)
 │➣ ${prefix}blowjob (nsfw)
+│➣ ${prefix}cum
+│➣ ${prefix}poke
+│➣ ${prefix}kiss
+│➣ ${prefix}pussy
+│➣ ${prefix}hentai
+│➣ ${prefix}asupan
 │
 └───────⭓
   
@@ -3150,6 +3191,7 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}tictactoe
 │➣ ${prefix}family100
 │➣ ${prefix}tebak [option]
+│➣ ${prefix}teka teki
 │➣ ${prefix}math [mode]
 │➣ ${prefix}suitpvp [@tag]
 │
@@ -3193,13 +3235,6 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}request
 │➣ ${prefix}report
 │➣ ${prefix}speedtest
-│
-└───────⭓
-
-┌──⭓「 *Asupan && nfsw* 」⭓
-│
-│➣ ${prefix}asupan
-│➣ ${prefix}nfsw
 │
 └───────⭓
 

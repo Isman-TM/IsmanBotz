@@ -12,7 +12,6 @@ global.APIs = {
 // Jangan di rubah
 global.APIKeys = {
 	'https://zenzapis.xyz': 'sonelstore',
-	'https://saipulanuar.ga/api': 'a2Rly5Ci',
 	'https://fax-home.herokuapp.com/docs': '023l1qhbpk',
 }
 

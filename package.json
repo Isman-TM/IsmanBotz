@@ -63,10 +63,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Isman-TM/IsmanV2.git"
+    "url": "git+https://github.com/Isman-TM/IsmanBotz.git"
   },
   "bugs": {
-    "url": "https://github.com/Isman-TM/IsmanV2/issues"
+    "url": "https://github.com/Isman-TM/IsmanBotz/issues"
   },
   "homepage": "https://github.com/Isman-TM#readme"
 }
