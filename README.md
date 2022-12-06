@@ -1,4 +1,4 @@
-# IsmanV2
+# IsmanBotz
 ## Bot Whatsapp
 
 <p align="center">
