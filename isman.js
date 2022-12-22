@@ -17,6 +17,7 @@ const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins } = require('./lib/myfunc')
 
+// Time 1
 const hariini = moment.tz('Asia/Jakarta').format('dddd, DD MMMM YYYY')
 const barat = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 const tengah = moment.tz('Asia/Makassar').format('HH:mm:ss')
@@ -24,7 +25,7 @@ const timur = moment.tz('Asia/Jayapura').format('HH:mm:ss')
 const namaowner = ('Isman-TM')
 const ownernya = ownernomer + '@s.whatsapp.net'
 
-//TIME
+// Time 2
 const time2 = moment().tz('Asia/Makassar').format('HH:mm:ss')  
  if(time2 < "23:59:00"){
 var ucapanWaktu = 'Selamat Malam 🌌'
@@ -45,11 +46,12 @@ var ucapanWaktu = 'Selamat Pagi 🌄'
 var ucapanWaktu = 'Selamat Pagi 🌉'
  }
 
-// read database
+// Read database
 let tebaklagu = db.data.game.tebaklagu = []
 let _family100 = db.data.game.family100 = []
 let kuismath = db.data.game.math = []
 let tebakgambar = db.data.game.tebakgambar = []
+let tebakbendera= db.data.game.tebakbendera = []
 let tebakkata = db.data.game.tebakkata = []
 let caklontong = db.data.game.lontong = []
 let caklontong_desk = db.data.game.lontong_desk = []
@@ -58,6 +60,11 @@ let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
 let tekateki = db.data.game.teki = []
 let vote = db.data.others.vote = []
+
+// SewaBot
+let ssewa = JSON.parse(fs.readFileSync('./lib/sewa.json'));
+let _sewa = require("./lib/sewa");
+const sewa = JSON.parse(fs.readFileSync('./lib/sewa.json'));
 
 module.exports = isman = async (isman, m, chatUpdate, store) => {
     try {
@@ -139,6 +146,11 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
         } catch (err) {
             console.error(err)
         }
+	   
+// Other
+const isSewa = _sewa.checkSewaGroup(m.chat, sewa)
+//Sewa
+_sewa.expiredCheck(isman, sewa)
 	    
         // Public & Self
         if (!isman.public) {
@@ -148,10 +160,10 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
         // Push Message To Console && Auto Read
         if (m.message) {
             isman.readMessages([m.key])
-            console.log(chalk.black(chalk.bgRed('[ BOT DIKONTROL OLEH ISMAN ]')), chalk.black(chalk.bgWhite(new Date)), chalk.black(chalk.bgRed(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.white(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.white(m.isGroup ? pushname : 'Private Chat', m.chat))
+            console.log(chalk.black(chalk.bgRed('[ ISMANBOT ]')), chalk.black(chalk.bgWhite(new Date)), chalk.black(chalk.bgRed(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.white(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.white(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
         
-        //Resize
+        // Resize
          const reSize = async(buffer, ukur1, ukur2) => {
              return new Promise(async(resolve, reject) => {
              let jimp = require('jimp')
@@ -161,10 +173,10 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
              })
              }
              
-        //fake
-        const  fkntkman = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': `${m.pushName}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;ytname,;;;\nFN:ytname\nitem1.TEL;waid=6285875158363:6285875158363\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await reSize(thumb, 100, 100), thumbnail: await reSize(thumb, 100, 100),sendEphemeral: true}}}
+        // Fake
+        const  fkntkman = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': `${m.pushName}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;ytname,;;;\nFN:ytname\nitem1.TEL;waid=6282284928416:6282284928416\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await reSize(thumb, 100, 100), thumbnail: await reSize(thumb, 100, 100),sendEphemeral: true}}}
 	
-	// reset limit every 12 hours
+	// Reset limit every 12 hours
         let cron = require('node-cron')
         cron.schedule('00 12 * * *', () => {
             let user = Object.keys(global.db.data.users)
@@ -173,10 +185,10 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
             console.log('Reseted Limit')
         }, {
             scheduled: true,
-            timezone: "Asia/Jakarta"
+            timezone: "Asia/Makassar"
         })
         
-	// auto set bio
+	// Auto set bio
 	if (db.data.settings[botNumber].autobio) {
 	    let setting = global.db.data.settings[botNumber]
 	    if (new Date() * 1 - setting.status > 1000) {
@@ -186,7 +198,7 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
 	    }
 	}
 	    
-	  // Anti Link
+	  // Anti link
         if (db.data.chats[m.chat].antilink) {
         if (budy.match(`chat.whatsapp.com`)) {
         m.reply(`「 ANTI LINK 」\n\nKamu terdeteksi mengirim link group, maaf kamu akan di kick !`)
@@ -201,12 +213,12 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
         }
         }
         
-      // Mute Chat
+      // Mute chat
       if (db.data.chats[m.chat].mute && !isAdmins && !isCreator) {
       return
       }
 
-        // Respon Cmd with media
+        // Respon cmd with media
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in global.db.data.sticker)) {
         let hash = global.db.data.sticker[m.msg.fileSha256.toString('base64')]
         let { text, mentionedJid } = hash
@@ -272,6 +284,15 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await m.reply(`Kuis Matematika\n\nJawaban Benar\n\nIngin bermain lagi? kirim ${prefix}math mode`)
                 delete kuismath[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
+
+        if (tebakbendera.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = tebakbendera[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await isman.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { displayText: 'Tebak Bendera' }, type: 1 }], `Tebak Bendera\n\nJawaban Benar\n\nIngin bermain lagi? tekan button dibawah`, global.author1, m)
+                delete tebakbendera[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
 
@@ -593,9 +614,37 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             }
             break
-	    case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
+            case 'sewa':
+if (!isCreator) return m.reply(mess.owner)
+if (!q) return m.reply(`Penggunaan :\n*${prefix}sewa* add/del waktu`)
+if (args[0] === 'add'){
+_sewa.addSewaGroup(m.chat, args[1], sewa)
+m.reply(`Success`)
+} else if (args[0].toLowerCase() === 'del'){
+sewa.splice(_sewa.getSewaPosition(m.chat, sewa), 1)
+fs.writeFileSync('./lib/sewa.json', JSON.stringify(sewa))
+m.reply(mess.success)
+} else {
+m.reply(`Penggunaan :\n*${prefix}sewa* add/del waktu`)}
+break
+case 'sewalist': case 'listsewa':
+let txtnyee = `List Sewa\nJumlah : ${sewa.length}\n\n`
+for (let i of sewa){
+let cekvippsewa = ms(i.expired - Date.now())
+txtnyee += `*ID :* ${i.id} \n*Expire :* ${cekvippsewa.days} day(s) ${cekvippsewa.hours} hour(s) ${cekvippsewa.minutes} minute(s) ${cekvipp.seconds} second(s)\n\n`
+}
+m.reply(txtnyee)
+break
+case 'sewacheck': case 'ceksewa': 
+if (!m.isGroup) return m.reply('Fitur Ini Hanya Bisa Digunakan Di Grup')
+if (!isSewa) return m.reply(`Group ini tidak terdaftar dalam list sewabot. Ketik ${prefix}sewabot untuk info lebih lanjut`)
+let cekvipsewa = ms(_sewa.getSewaExpired(m.chat, sewa) - Date.now())
+let sewanya = `*「 SEWA EXPIRE 」*\n\n➸ *ID*: ${from}\n➸ *Expired :* ${cekvipsewa.days} day(s) ${cekvipsewa.hours} hour(s) ${cekvipsewa.minutes} minute(s)`
+m.reply(sewanya)
+        break
+	    case 'donasi': case 'donate': {
   goblok = fs.readFileSync('./isman/donasi.jpg')
-                isman.sendMessage(m.chat, { image: goblok, caption: `*Halo Kak 😁*\n\n➣ 10K via pulsa 1 Month: 6282218677120` }, { quoted: fkntkman })
+                isman.sendMessage(m.chat, { image: goblok, caption: `*Halo Kak 😁*\n\n➣Pulsa: 6282218677120` }, { quoted: fkntkman })
             }
             case 'subscribe':{
             smeme = fs.readFileSync('./isman/subscribe.mp4')
@@ -680,8 +729,18 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             
             case 'sc': case 'script': {
+            reactionMessage = {
+                    react: {
+                        text: '🤖',
+                        key: m.key
+                    }
+                }
+                let buttons = [
+                    {buttonId: `creator`, buttonText: {displayText: 'Creator'}, type: 1},
+                    {buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1}
+                ]
             menuku = fs.readFileSync('./lib/isman.jpg')
-                isman.sendMessage(m.chat, { image: menuku, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Lagi Cari Script Yah ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+                isman.sendMessage(m.chat, { image: menuku, buttons, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Lagi Cari Script Yah ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
 
 ┌──⭓「 𝙎𝙘𝙧𝙞𝙥𝙩 」⭓
 │
@@ -774,7 +833,7 @@ isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quote
              }     
             break       
             case 'tebak': {
-                if (!text) throw `Contoh : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6. lontong\n7. tebakan`
+                if (!text) throw `Contoh : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6. lontong\n7. tebakan\n8. tebakbendera`
                 if (args[0] === "lagu") {
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                     let anu = await fetchJson('https://fatiharridho.github.io/tebaklagu.json')
@@ -788,6 +847,19 @@ isman.sendMessage(m.chat, {audio: bot, mimetype:'audio/mpeg', ptt:true }, {quote
                     console.log("Jawaban: " + result.jawaban)
                     isman.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebaklagu[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
                     delete tebaklagu[m.sender.split('@')[0]]
+                    }
+                    } else if (args[0] === 'bendera') {
+                    if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakbendera.json')
+                    let result = anu[Math.floor(Math.random() * anu.length)]
+                    isman.sendImage(m.chat, result.img, `Silahkan Jawab Soal Di Atas Ini\n\nDeskripsi : ${result.deskripsi}\nWaktu : 60s`, m).then(() => {
+                    tebakbendera[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.jawaban)
+                    isman.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { displayText: 'Tebak Bendera' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakbendera[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, global.author1, m)
+                    delete tebakbendera[m.sender.split('@')[0]]
                     }
                 } else if (args[0] === 'gambar') {
                     if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
@@ -1418,19 +1490,39 @@ break
                 isman.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
+            case 'menfess': case 'menfes': {
+		        if (m.isGroup) throw ('fitur ini hanya bisa di chat private')
+            	if (!text) throw `Example : ${prefix + command} 6288972720297|nama kamu|pesan kamu`
+            var man = args.join(' ')
+            var man1 = man.split("|")[0]
+            var man2 = man.split("|")[1]
+            var man3 = man.split("|")[2]
+               let fakemenfes = {key : {participant : '0@s.whatsapp.net', ...(m.chat ? { remoteJid: `status@broadcast` } : {}) },message: {locationMessage: {name: 'Lokasimu', jpegThumbnail: thumb}}}
+               let mq1 = man1 + '@s.whatsapp.net'
+               let rahasia = ('PESAN RAHASIA')
+               let ownernya = ownernomer + '@s.whatsapp.net'
+               let me = m.sender
+               let ments = [mq1, ownernya, me]
+               let textny = `Pesan Dari : ${man2} \nUntuk : @${mq1.split('@')[0]}\n\n${man3}`
+               let buttons = [{ buttonId: 'love', buttonText: { displayText: 'Like' }, type: 1 }]
+            await isman.sendButtonText(man1 + '@s.whatsapp.net', buttons, textny, rahasia, m, {mentions: ments, quoted: fakemenfes})
+            let pesanrhsia = `Pesan Telah Terkirim\nKe @${mq1.split('@')[0]}`
+            await isman.sendButtonText(m.chat, buttons, pesanrhsia, m, {mentions: ments})
+            }
+            break
             case 'report': case 'lapor': {
             	if (!text) throw `Example : ${prefix + command} Lapor Ada Fitur Yang error`
                let ownernya = ownernomer + '@s.whatsapp.net'
                let me = m.sender
-               let pjtxt = `Pesan Dari : @${me.split('@')[0]} \nUntuk : @${ownernya.split('@')[0]}\n\n${text}`
+               let textny = `Pesan Dari : @${me.split('@')[0]} \nUntuk : @${ownernya.split('@')[0]}\n\n${text}`
                let ments = [ownernya, me]
-               let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS LAPORANNYA' }, type: 1 }]
-            await isman.sendButtonText(ownernya, buttons, pjtxt, namaowner, m, {mentions: ments})
-            let akhji = `Laporan Telah Terkirim\nKe Creator @${ownernya.split('@')[0]}\n*Terima Kasih Laporannya🙏*\n_Nomermu Akan Terblokir_\n_Jika Laporan Hanya Di Buat Buat_`
-            await isman.sendButtonText(m.chat, buttons, akhji, namaowner, m, {mentions: ments})
+               let buttons = [{ buttonId: 'love', buttonText: { displayText: '🙏THANKS LAPORANNYA' }, type: 1 }]
+            await isman.sendButtonText(ownernya, buttons, textny, namaowner, m, {mentions: ments})
+            let laporan = `Laporan Telah Terkirim\nKe Creator @${ownernya.split('@')[0]}\n*Terima Kasih Laporannya🙏*\n_Nomermu Akan Terblokir_\n_Jika Laporan Hanya Di Buat Buat_`
+            await isman.sendButtonText(m.chat, buttons, laporan, namaowner, m, {mentions: ments})
             }
             break
-            case 'hehehe': {
+            case 'love': {
                 reactionMessage = {
                     react: {
                         text: '❤',
@@ -1450,7 +1542,7 @@ m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.len
 for (let i of anu) {
 await sleep(1500)
 let txt = `「 Broadcast Bot 」\n\n${text}`
-let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Isman' }, type: 1 },{ buttonId: 'pcrnycreat', buttonText: { displayText: 'Amel' }, type: 1 }]
+let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Creator' }, type: 1 },{ buttonId: 'owner', buttonText: { displayText: 'Owner' }, type: 1 }]
 await isman.sendButtonText(i, buttons, txt, namaowner, m, {quoted: fkntkman})
 }
 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
@@ -1464,7 +1556,7 @@ m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 
 		for (let yoi of anu) {
 		await sleep(1500)
 		let txt = `「 Broadcast Bot 」\n\n${text}`
-		let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Isman' }, type: 1 },{ buttonId: 'pcrnycreat', buttonText: { displayText: 'Amel' }, type: 1 }]
+		let buttons = [{ buttonId: 'creator', buttonText: { displayText: 'Creator' }, type: 1 },{ buttonId: 'owner', buttonText: { displayText: 'Owner' }, type: 1 }]
             await isman.sendButtonText(yoi, buttons, txt, namaowner, m, {quoted: fkntkman})
 		}
 		m.reply('Sukses Broadcast')
@@ -1805,7 +1897,7 @@ break
                 ]
                 let buttonMessage = {
                     text: `Download From ${text}`,
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 2
                 }
@@ -1823,7 +1915,7 @@ break
                 let buttonMessage = {
                     video: { url: anu.result.url },
                     caption: `Download From ${text}`,
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 5
                 }
@@ -1937,7 +2029,7 @@ break
                 ]
                 let buttonMessage = {
                     text: `~_${result.quotes}_\n\nBy '${result.karakter}', ${result.anime}\n\n- ${result.up_at}`,
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 2
                 }
@@ -1951,7 +2043,7 @@ break
                 ]
                 let buttonMessage = {
                     text: anu.result.message,
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 2
                 }
@@ -2330,18 +2422,30 @@ break
                 }
             }
             break
+            case 'mediafire': {
+         if (!text) throw 'Masukkan Query Link!'
+            m.reply(mess.wait)
+         let anu = await fetchJson(`https://api.zeeoneofc.xyz/api/downloader/mediafire?url=${text}&apikey=hGU6DvcS`)
+         let buttonMessage = {
+                    document: { url: anu.result.link },
+                    caption: `Username : ${anu.result.name}\nMime : ${anu.result.mime}\n Size : ${anu.result.size}`,
+                    footer: 'Isman bot whatsapp',
+                    headerType: 5
+                }
+                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
+           }
+           break
            case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}`)
                 let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.video },
-                    caption: `Download From ${text}`,
-                    footer: 'Isman ♡ Amel',
+                    caption: `Username : ${anu.result.username}\nDescription : ${anu.result.description}`,
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 5
                 }
@@ -2351,14 +2455,13 @@ break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok3?url=${text}`)
+                let anu = await fetchJson(`https://saipulanuar.ga/api/download/tiktok?url=${text}`)
                 let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1}
                 ]
                 let buttonMessage = {
-                    text: `Download From ${text}`,
-                    footer: 'Isman ♡ Amel',
+                    text: `Username : ${anu.result.username}\nDescription : ${anu.result.description}`,
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 2
                 }
@@ -2404,7 +2507,7 @@ break
                 let buttonMessage = {
                     video: { url: anu.result.HD || anu.result.SD },
                     caption: util.format(anu.result),
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 5
                 }
@@ -2421,7 +2524,7 @@ break
                 let buttonMessage = {
 		    image: { url: anu.result.thumb },
                     caption: util.format(anu.result),
-                    footer: 'Isman ♡ Amel',
+                    footer: 'Isman bot whatsapp',
                     buttons: buttons,
                     headerType: 4
                 }
@@ -2530,7 +2633,7 @@ ${id}`)
 		case 'alquran': {
 		if (!args[0]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
 		if (!args[1]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
-		let res = await fetchJson(`https://islamic-api-indonesia.herokuapp.com/api/data/quran?surah=${args[0]}&ayat=${args[1]}`)
+		let res = await fetchJson(`https://api.zeeoneofc.xyz/api/islam/alquran-audio2?surah=${args[0]}&ayat=${args[1]}&apikey=hGU6DvcS`)
 		let txt = `*Arab* : ${res.result.data.text.arab}
 *English* : ${res.result.data.translation.en}
 *Indonesia* : ${res.result.data.translation.id}
@@ -2785,13 +2888,6 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 m.reply('Sukses Change To Self Usage')
             }
             break
-            case 'ping': case 'botstatus': case 'statusbot': { m.reply(`             
-📱Info Server
-*Device:* Sony Xperia XZ3
-*RAM:* 8/128 GB
-*Chipset:* Snapdragon 865`)
-            }
-            break
             case 'speedtest': {
             m.reply('Testing Speed...')
             let cp = require('child_process')
@@ -2833,7 +2929,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 isman.sendContact(m.chat, global.owner, fkntkman)
             }
             break
-            case 'pcrnycreat': {
+            case 'mntnnycreat': {
             if (!isCreatorku) throw mess.creator
             reactionMessage = {
                     react: {
@@ -2974,9 +3070,21 @@ let capt = `➣ Title: ${judul}
             isman.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
             break
+            case 'memeindo':{
+            m.reply(mess.wait)
+            wanjay = 'https://saipulanuar.ga/api/memeh'
+            isman.sendMessage(m.chat, {image:{url:wanjay}, mimetype:"image/jpeg", caption:"Ni memeindo ny"}, {quoted:fkntkman})
+            }
+            break
+            case 'asupan':{
+            m.reply(mess.wait)
+            affantuh = 'https://api.zeeoneofc.xyz/api/asupan/asupan?apikey=hGU6DvcS'
+            isman.sendMessage(m.chat, {video:{url:affantuh}, mimetype:"video/mp4", caption:"Ingat dosa"}, {quoted:fkntkman})
+            }
+            break
             case 'cum':case 'poke':case 'kiss':case 'pussy':case 'hentai':{
             m.reply(mess.wait)
-            isman.sendMessage(m.chat, { image: { url: `https://api.lolhuman.xyz/api/random2/${command}?apikey=SadTeams`}, caption: `Nih ${command}📸` }, { quoted: fkntkman})
+            isman.sendMessage(m.chat, { image: { url: `https://api.lolhuman.xyz/api/random2/${command}?apikey=SadTeams`}, caption: `Nih ${command}` }, { quoted: fkntkman})
             }
             break
             
@@ -2989,11 +3097,15 @@ let capt = `➣ Title: ${judul}
                         key: m.key
                     }
                 }
+                let buttons = [
+                    {buttonId: `creator`, buttonText: {displayText: 'Creator'}, type: 1},
+                    {buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1}
+                ]
                 isman.sendMessage(m.chat, reactionMessage)
                 menu = fs.readFileSync('./isman/menu.mp3')
                 isman.sendMessage(m.chat, {audio: menu, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
                 menuku = fs.readFileSync('./lib/isman.jpg')
-                isman.sendMessage(m.chat, { image: menuku, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Ada Yang Bisa Saya Bantu Kak ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+                isman.sendMessage(m.chat, { image: menuku, buttons, caption: `_${ucapanWaktu}_\n\n_Saya IsmanBot_\n\n _Ada Yang Bisa Saya Bantu Kak ${m.pushName}_͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
 
 ┌──⭓「 *Indonesia Time* 」⭓
 │➣ *Hari Ini* : ${hariini}
@@ -3044,7 +3156,6 @@ let capt = `➣ Title: ${judul}
 ┌──⭓「 *Downloader Menu* 」⭓
 │
 │➣ ${prefix}tiktoknowm [url]
-│➣ ${prefix}tiktokwm [url]
 │➣ ${prefix}tiktokmp3 [url]
 │➣ ${prefix}instagram [url] x
 │➣ ${prefix}twitter [url] x
@@ -3232,6 +3343,7 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}listpc
 │➣ ${prefix}listgc
 │➣ ${prefix}listonline
+│➣ ${prefix}menfess
 │➣ ${prefix}request
 │➣ ${prefix}report
 │➣ ${prefix}speedtest
