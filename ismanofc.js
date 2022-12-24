@@ -77,7 +77,107 @@ console.log(color(figlet.textSync('ISMAN-BOT', {
 		whitespaceBreak: true
         }), 'green')) 
         
-console.log(color('\nCreated By IsmanOfc ','green'))
+console.log(color('\n\nCreated By IsmanOfc ','green'))
+console.log(color('\nTunggu sebntar: 1% ','green'))
+console.log(color('\nTunggu sebntar: 2% ','green'))
+console.log(color('\nTunggu sebntar: 3% ','green'))
+console.log(color('\nTunggu sebntar: 4% ','green'))
+console.log(color('\nTunggu sebntar: 5© ','green'))
+console.log(color('\nTunggu sebntar: 6% ','green'))
+console.log(color('\nTunggu sebntar: 8% ','green'))
+console.log(color('\nTunggu sebntar: 9% ','green'))
+console.log(color('\nTunggu sebntar: 10% ','green'))
+console.log(color('\nTunggu sebntar: 11% ','green'))
+console.log(color('\nTunggu sebntar: 12% ','green'))
+console.log(color('\nTunggu sebntar: 13% ','green'))
+console.log(color('\nTunggu sebntar: 14% ','green'))
+console.log(color('\nTunggu sebntar: 15% ','green'))
+console.log(color('\nTunggu sebntar: 16% ','green'))
+console.log(color('\nTunggu sebntar: 17% ','green'))
+console.log(color('\nTunggu sebntar: 18% ','green'))
+console.log(color('\nTunggu sebntar: 19% ','green'))
+console.log(color('\nTunggu sebntar: 20% ','green'))
+console.log(color('\nTunggu sebntar: 21% ','green'))
+console.log(color('\nTunggu sebntar: 22% ','green'))
+console.log(color('\nTunggu sebntar: 23% ','green'))
+console.log(color('\nTunggu sebntar: 24% ','green'))
+console.log(color('\nTunggu sebntar: 25% ','green'))
+console.log(color('\nTunggu sebntar: 26% ','green'))
+console.log(color('\nTunggu sebntar: 27% ','green'))
+console.log(color('\nTunggu sebntar: 28% ','green'))
+console.log(color('\nTunggu sebntar: 29% ','green'))
+console.log(color('\nTunggu sebntar: 30% ','green'))
+console.log(color('\nTunggu sebntar: 31% ','green'))
+console.log(color('\nTunggu sebntar: 32% ','green'))
+console.log(color('\nTunggu sebntar: 33% ','green'))
+console.log(color('\nTunggu sebntar: 34% ','green'))
+console.log(color('\nTunggu sebntar: 35% ','green'))
+console.log(color('\nTunggu sebntar: 36% ','green'))
+console.log(color('\nTunggu sebntar: 37% ','green'))
+console.log(color('\nTunggu sebntar: 38% ','green'))
+console.log(color('\nTunggu sebntar: 39% ','green'))
+console.log(color('\nTunggu sebntar: 40% ','green'))
+console.log(color('\nTunggu sebntar: 41% ','green'))
+console.log(color('\nTunggu sebntar: 42% ','green'))
+console.log(color('\nTunggu sebntar: 43% ','green'))
+console.log(color('\nTunggu sebntar: 44% ','green'))
+console.log(color('\nTunggu sebntar: 45% ','green'))
+console.log(color('\nTunggu sebntar: 46% ','green'))
+console.log(color('\nTunggu sebntar: 47% ','green'))
+console.log(color('\nTunggu sebntar: 48% ','green'))
+console.log(color('\nTunggu sebntar: 49% ','green'))
+console.log(color('\nTunggu sebntar: 50% ','green'))
+console.log(color('\nTunggu sebntar: 51% ','green'))
+console.log(color('\nTunggu sebntar: 52% ','green'))
+console.log(color('\nTunggu sebntar: 53% ','green'))
+console.log(color('\nTunggu sebntar: 54% ','green'))
+console.log(color('\nTunggu sebntar: 55% ','green'))
+console.log(color('\nTunggu sebntar: 56% ','green'))
+console.log(color('\nTunggu sebntar: 57% ','green'))
+console.log(color('\nTunggu sebntar: 58% ','green'))
+console.log(color('\nTunggu sebntar: 59% ','green'))
+console.log(color('\nTunggu sebntar: 60% ','green'))
+console.log(color('\nTunggu sebntar: 61% ','green'))
+console.log(color('\nTunggu sebntar: 62% ','green'))
+console.log(color('\nTunggu sebntar: 63% ','green'))
+console.log(color('\nTunggu sebntar: 64% ','green'))
+console.log(color('\nTunggu sebntar: 65% ','green'))
+console.log(color('\nTunggu sebntar: 66% ','green'))
+console.log(color('\nTunggu sebntar: 67% ','green'))
+console.log(color('\nTunggu sebntar: 68% ','green'))
+console.log(color('\nTunggu sebntar: 69% ','green'))
+console.log(color('\nTunggu sebntar: 70% ','green'))
+console.log(color('\nTunggu sebntar: 71% ','green'))
+console.log(color('\nTunggu sebntar: 72% ','green'))
+console.log(color('\nTunggu sebntar: 73% ','green'))
+console.log(color('\nTunggu sebntar: 74% ','green'))
+console.log(color('\nTunggu sebntar: 75% ','green'))
+console.log(color('\nTunggu sebntar: 76% ','green'))
+console.log(color('\nTunggu sebntar: 77% ','green'))
+console.log(color('\nTunggu sebntar: 78% ','green'))
+console.log(color('\nTunggu sebntar: 79% ','green'))
+console.log(color('\nTunggu sebntar: 80% ','green'))
+console.log(color('\nTunggu sebntar: 81% ','green'))
+console.log(color('\nTunggu sebntar: 82% ','green'))
+console.log(color('\nTunggu sebntar: 83% ','green'))
+console.log(color('\nTunggu sebntar: 84% ','green'))
+console.log(color('\nTunggu sebntar: 85% ','green'))
+console.log(color('\nTunggu sebntar: 86% ','green'))
+console.log(color('\nTunggu sebntar: 87% ','green'))
+console.log(color('\nTunggu sebntar: 88% ','green'))
+console.log(color('\nTunggu sebntar: 89% ','green'))
+console.log(color('\nTunggu sebntar: 90% ','green'))
+console.log(color('\nTunggu sebntar: 80% ','green'))
+console.log(color('\nTunggu sebntar: 91% ','green'))
+console.log(color('\nTunggu sebntar: 92% ','green'))
+console.log(color('\nTunggu sebntar: 93% ','green'))
+console.log(color('\nTunggu sebntar: 94% ','green'))
+console.log(color('\nTunggu sebntar: 95% ','green'))
+console.log(color('\nTunggu sebntar: 96% ','green'))
+console.log(color('\nTunggu sebntar: 97% ','green'))
+console.log(color('\nTunggu sebntar: 98% ','green'))
+console.log(color('\nTunggu sebntar: 99% ','green'))
+console.log(color('\nSelesai: 100% ','green'))
         
     const isman = ismanConnect({
         logger: pino({ level: 'silent' }),
@@ -122,7 +222,7 @@ console.log(color('\nCreated By IsmanOfc ','green'))
         }
     })
     
-    // Group Update
+     // Group Update
     isman.ev.on('groups.update', async pea => {
     //console.log(pea)
     try {
@@ -171,15 +271,81 @@ console.log(color('\nCreated By IsmanOfc ','green'))
                     ppgroup = 'https://tinyurl.com/yx93l6da'
                 }
 
+
+                //welcome\\
+        let nama = await isman.getName(num)
+memb = metadata.participants.length
+XeonWlcm = await getBuffer(ppuser)
+XeonLft = await getBuffer(ppuser)
                 if (anu.action == 'add') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Selamat datang di ${metadata.subject}\n\nTolong intro dulu ya kak @${num.split("@")[0]}\nNama:...\nAsal:...\nKelas:...\nUmur:...\nAgama:...\nStatus:...\n\nSemoga betah ya di group ${metadata.subject}` })
+                const xeonbuffer = await getBuffer(ppuser)
+                let xeonName = num
+	            const xmembers = metadata.participants.length
+                let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: XeonWlcm, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                xeonbody = `┌─❖
+│「 𝘏𝘢𝘪 👋 」
+└┬❖ 「 @${xeonName.split("@")[0]}  」
+   │✑  𝘞𝘦𝘭𝘤𝘰𝘮𝘦 𝘛𝘰 
+   │✑  ${metadata.subject}
+   │✑  𝘔𝘦𝘮𝘣𝘦𝘳 : 
+   │✑ ${xmembers} user
+   └───────────────┈ ⳹`
+let buttons = [
+{buttonId: `wkwwk`, buttonText: {displayText: 'Selamat Datang kak'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./isman/theme/cheems.xlsx'),
+jpegThumbnail:XeonWlcm,
+mentions: [num],
+fileName: `${metadata.subject}`,
+fileLength: 6281337106240,
+caption: xeonbody,
+footer: `${isman.user.name}`,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title: `${isman.user.name}`,
+body: `Jangan Lupa Baca deskripsi kak`,
+mediaType:2,
+thumbnail: XeonWlcm,
+}}
+}
+isman.sendMessage(anu.id, buttonMessage, {quoted:unicorndoc})
                 } else if (anu.action == 'remove') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Selamat tinggal kak @${num.split("@")[0]}\nSemoga Balik lagi yah di group ${metadata.subject}` })
-                } else if (anu.action == 'promote') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Promote From ${metadata.subject}` })
-                } else if (anu.action == 'demote') {
-                    isman.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Demote From ${metadata.subject}` })
-              }
+                	const xeonbuffer = await getBuffer(ppuser)
+                	let xeonName = num
+                    const xeonmembers = metadata.participants.length
+                    let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: xeonbuffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                    xeonbody = `┌─❖
+│「 𝗚𝗼𝗼𝗱𝗯𝘆𝗲 👋 」
+└┬❖ 「 @${xeonName.split("@")[0]}  」
+   │✑  𝗟𝗲𝗳𝘁 
+   │✑ ${metadata.subject}
+   │✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
+   │✑ ${xeonmembers}User
+   └───────────────┈ ⳹`
+let buttons = [
+{buttonId: `wkwkwk`, buttonText: {displayText: 'Selamat Tinggal kak'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./isman/theme/cheems.xlsx'),
+jpegThumbnail:XeonLft,
+mentions: [num],
+fileName: `${metadata.subject}`,
+fileLength: 6288972720297,
+caption: xeonbody,
+footer: `${isman.user.name}`,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title: `${isman.user.name}`,
+body: `Bye Semoga Khusnul khatimah.`,
+mediaType:2,
+thumbnail: XeonLft,
+}}
+}
+isman.sendMessage(anu.id, buttonMessage, {quoted:unicorndoc})
+                }
             }
         } catch (err) {
             console.log(err)

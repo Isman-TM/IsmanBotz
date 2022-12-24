@@ -17,7 +17,7 @@ global.APIKeys = {
 
 // Boleh di rubah
 global.ownernomer = "6281337106240"
-global.owner = ['6281337106240','6288972720297','62895328935760','6285255312224','628985479521']
+global.owner = ['6281337106240','6288972720297','62881026009477']
 global.premium = ['6281337106240']
 global.packname = 'IsmanBotz'
 global.author = '2022'
@@ -39,7 +39,7 @@ global.mess = {
 }
 global.limitawal = {
     premium: "Infinity",
-    free: 5
+    free: "10"
 }
 global.thumb = fs.readFileSync('./lib/isman.jpg')
 global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }

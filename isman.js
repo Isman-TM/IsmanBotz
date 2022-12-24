@@ -16,6 +16,7 @@ const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins } = require('./lib/myfunc')
+const { jadibot, stopjadibot, conns } = require('./lib/jadibot')
 
 // Time 1
 const hariini = moment.tz('Asia/Jakarta').format('dddd, DD MMMM YYYY')
@@ -60,11 +61,6 @@ let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
 let tekateki = db.data.game.teki = []
 let vote = db.data.others.vote = []
-
-// SewaBot
-let ssewa = JSON.parse(fs.readFileSync('./lib/sewa.json'));
-let _sewa = require("./lib/sewa");
-const sewa = JSON.parse(fs.readFileSync('./lib/sewa.json'));
 
 module.exports = isman = async (isman, m, chatUpdate, store) => {
     try {
@@ -147,11 +143,6 @@ module.exports = isman = async (isman, m, chatUpdate, store) => {
             console.error(err)
         }
 	   
-// Other
-const isSewa = _sewa.checkSewaGroup(m.chat, sewa)
-//Sewa
-_sewa.expiredCheck(isman, sewa)
-	    
         // Public & Self
         if (!isman.public) {
             if (!m.key.fromMe) return
@@ -611,36 +602,8 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             if (this.suit[id]) isman.sendText(m.chat, `_Waktu suit habis_`, m)
             delete this.suit[id]
             }, 60000), poin, poin_lose, timeout
-            }
-            }
-            break
-            case 'sewa':
-if (!isCreator) return m.reply(mess.owner)
-if (!q) return m.reply(`Penggunaan :\n*${prefix}sewa* add/del waktu`)
-if (args[0] === 'add'){
-_sewa.addSewaGroup(m.chat, args[1], sewa)
-m.reply(`Success`)
-} else if (args[0].toLowerCase() === 'del'){
-sewa.splice(_sewa.getSewaPosition(m.chat, sewa), 1)
-fs.writeFileSync('./lib/sewa.json', JSON.stringify(sewa))
-m.reply(mess.success)
-} else {
-m.reply(`Penggunaan :\n*${prefix}sewa* add/del waktu`)}
-break
-case 'sewalist': case 'listsewa':
-let txtnyee = `List Sewa\nJumlah : ${sewa.length}\n\n`
-for (let i of sewa){
-let cekvippsewa = ms(i.expired - Date.now())
-txtnyee += `*ID :* ${i.id} \n*Expire :* ${cekvippsewa.days} day(s) ${cekvippsewa.hours} hour(s) ${cekvippsewa.minutes} minute(s) ${cekvipp.seconds} second(s)\n\n`
-}
-m.reply(txtnyee)
-break
-case 'sewacheck': case 'ceksewa': 
-if (!m.isGroup) return m.reply('Fitur Ini Hanya Bisa Digunakan Di Grup')
-if (!isSewa) return m.reply(`Group ini tidak terdaftar dalam list sewabot. Ketik ${prefix}sewabot untuk info lebih lanjut`)
-let cekvipsewa = ms(_sewa.getSewaExpired(m.chat, sewa) - Date.now())
-let sewanya = `*「 SEWA EXPIRE 」*\n\n➸ *ID*: ${from}\n➸ *Expired :* ${cekvipsewa.days} day(s) ${cekvipsewa.hours} hour(s) ${cekvipsewa.minutes} minute(s)`
-m.reply(sewanya)
+          }
+        }
         break
 	    case 'donasi': case 'donate': {
   goblok = fs.readFileSync('./isman/donasi.jpg')
@@ -715,19 +678,40 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             }
             break
-            
             case 'session': {
             if (!isCreator) throw mess.owner
             ana = fs.readFileSync('./Isman.json')
               m.reply('*Woe Bre Minimal Subscribe Yt  IsmanFF Lah*')
             isman.sendMessage(m.chat, {document: ana, mimetype: 'application/json', fileName: `Isman.json`}, {quoted:fkntkman})}
             break
-            
              case 'sessionzip': {
             ana = fs.readFileSync('./Isman.json')
             isman.sendMessage(m.chat, {document: ana, mimetype: 'application/zip', fileName: `Isman.json`}, {quoted:fkntkman})}
             break
-            
+            case 'jadibot': {
+            if (!isCreator) throw mess.owner
+            jadibot(isman, fkntkman, m.chat)
+            }
+            break
+            case 'stopjadibot': {
+            if (!isCreator) throw mess.owner
+            stopjadibot(isman, fkntkman, m.chat)
+            }
+            break
+            case 'listjadibot': 
+            try {
+            let user = [... new Set([...global.conns.filter(isman => isman.user).map(isman => isman.user)])]
+            te = "*List Jadibot*\n\n"
+            for (let i of user){
+            y = await isman.decodeJid(i.id)
+            te += " × User : @" + y.split("@")[0] + "\n"
+            te += " × Name : " + i.name + "\n\n"
+            }
+            isman.sendMessage(from,{text:te,mentions: [y], },{quoted:m})
+            } catch (err) {
+            m.reply(`Belum Ada User Yang Jadibot`)
+            }
+            break
             case 'sc': case 'script': {
             reactionMessage = {
                     react: {
@@ -2422,18 +2406,19 @@ break
                 }
             }
             break
+            case 'pantun': {
+			m.reply(mess.wait)
+			let pant = await fetchJson(`https://danzzapi.xyz/api/fun/pantun?apikey=${global.apikey}`)
+			let pantun = `*Author:* ${pant.result.author}\n*Pantun:* ${pant.result.pantun}`
+			m.reply(`${pantun}`)
+		    }
+		    break
             case 'mediafire': {
-         if (!text) throw 'Masukkan Query Link!'
-            m.reply(mess.wait)
-         let anu = await fetchJson(`https://api.zeeoneofc.xyz/api/downloader/mediafire?url=${text}&apikey=hGU6DvcS`)
-         let buttonMessage = {
-                    document: { url: anu.result.link },
-                    caption: `Username : ${anu.result.name}\nMime : ${anu.result.mime}\n Size : ${anu.result.size}`,
-                    footer: 'Isman bot whatsapp',
-                    headerType: 5
-                }
-                isman.sendMessage(m.chat, buttonMessage, { quoted: fkntkman })
-           }
+         	if (!text) throw 'Masukkan Query Link!'
+         	m.reply(mess.wait)
+             let mediafire = await fetchJson(`https://api.zeeoneofc.xyz/api/downloader/mediafire?url=${text}&apikey=hGU6DvcS`)
+             isman.sendMessage(m.chat, { document: { url: mediafire.result.url }, mimetype: 'document/zip', fileName: `${mediafire.result.name}` }, { quoted: fkntkman })
+         	}
            break
            case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
@@ -2938,8 +2923,6 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     }
                 }
                 isman.sendMessage(m.chat, reactionMessage)
-                pcrku = fs.readFileSync('./isman/pcrku.mp3')
-                isman.sendMessage(m.chat, {audio: pcrku, mimetype:'audio/mpeg', ptt:true }, {quoted:fkntkman})
                 isman.sendContact(m.chat, ['6288972720297'], fkntkman)
             }
             break
