@@ -3195,6 +3195,8 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}pussy
 │➣ ${prefix}hentai
 │➣ ${prefix}asupan
+│➣ ${prefix}pantun
+│➣ ${prefix}memeindo
 │
 └───────⭓
   
@@ -3330,6 +3332,9 @@ let capt = `➣ Title: ${judul}
 │➣ ${prefix}request
 │➣ ${prefix}report
 │➣ ${prefix}speedtest
+│➣ ${prefix}jadibot
+│➣ ${prefix}listjadibot
+│➣ ${prefix}stopjadibot
 │
 └───────⭓
 
