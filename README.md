@@ -10,17 +10,11 @@
  > https://github.com/Isman-TM
 ```
 
-## Heroku Buildpack
+## FOR REPLIT USER
 
-Click the deploy icon below !
+[![Run on Repl.it](https://repl.it/badge/github/Isman-TM/IsmanBotz)](https://repl.it/github/Isman-TM/IsmanBotz)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Isman-TM/IsmanBotz)
-
-```bash
- > heroku/nodejs
- > https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
- > https://github.com/clhuang/heroku-buildpack-webp-binaries.git
-```
+----------
 
 ## TERMUX USER
 ```bash

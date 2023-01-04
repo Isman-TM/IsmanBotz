@@ -259,93 +259,48 @@ console.log(color('\nSelesai: 100% ','green'))
             for (let num of participants) {
                 // Get Profile Picture User
                 try {
-                    ppuser = await isman.profilePictureUrl(num, 'image')
+                                ppuser = await isman.profilePictureUrl(num, 'image')
                 } catch {
-                    ppuser = 'https://tinyurl.com/yx93l6da'
+                    ppuser = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60'
                 }
+                
+                //Resize
+         const reSize = async(buffer, ukur1, ukur2) => {
+             return new Promise(async(resolve, reject) => {
+             let jimp = require('jimp')
+             var baper = await jimp.read(buffer);
+             var ab = await baper.resize(ukur1, ukur2).getBufferAsync(jimp.MIME_JPEG)
+             resolve(ab)
+             })
+             }
 
                 // Get Profile Picture Group
                 try {
                     ppgroup = await isman.profilePictureUrl(anu.id, 'image')
                 } catch {
-                    ppgroup = 'https://tinyurl.com/yx93l6da'
+                    ppgroup = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60'
                 }
-
-
-                //welcome\\
-        let nama = await isman.getName(num)
-memb = metadata.participants.length
-XeonWlcm = await getBuffer(ppuser)
-XeonLft = await getBuffer(ppuser)
+                
+                let butwel = [{ buttonId: 'intro', buttonText: { displayText: 'WELCOME' }, type: 1 }]
+                let butleav = [{ buttonId: 'gdby', buttonText: { displayText: 'GODBAY👋' }, type: 1 }]
+                let butselamat = [{ buttonId: '', buttonText: { displayText: 'SELAMAT' }, type: 1 }]
+                let butsebar = [{ buttonId: '', buttonText: { displayText: 'SABAR' }, type: 1 }]
+                let groupwa = ('Group: https://chat.whatsapp.com/D6suCbNClxV6BlYJN1FRbq')
+                let teks1 = `*Halo Kak @${num.split('@')[0]}*\n*Selamat Datang Di Grup*\n*${metadata.subject}*\n*Jangan Lupa Intro Yahh*`
+                let teks2 = `*Selamat Tinggal Kak @${num.split('@')[0]}*\n*Semoga Tenang Di Alam Sana*`
+                let teks3 = `*@${num.split('@')[0]} Promote From*\n*${metadata.subject}*\n*Selamat Anda Menjadi Admin*\n_~Jangan Semena Mena!_`
+                let teks4 = `*@${num.split('@')[0]} Demote From*\n*${metadata.subject}*\n_Kasihan Turun Pangkat🤭_`
+                //let wlcm = await getBuffer(`https://saipulanuar.ga/api/canvas/welcome4?name=@${num.split('@')[0]}&gcname=${metadata.subject}&pp=${ppuser}&)bg=https://i.pinimg.com/564x/3d/4c/29/3d4c2971c92f829e461519075c6d7cb9.jpg`)
+                //let gdby = await getBuffer(`https://saipulanuar.ga/api/canvas/goodbye4?name=@${num.split('@')[0]}&gcname=${metadata.subject}&pp=${ppuser}&bg=https://i.pinimg.com/564x/3d/4c/29/3d4c2971c92f829e461519075c6d7cb9.jpg`)
                 if (anu.action == 'add') {
-                const xeonbuffer = await getBuffer(ppuser)
-                let xeonName = num
-	            const xmembers = metadata.participants.length
-                let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: XeonWlcm, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                xeonbody = `┌─❖
-│「 𝘏𝘢𝘪 👋 」
-└┬❖ 「 @${xeonName.split("@")[0]}  」
-   │✑  𝘞𝘦𝘭𝘤𝘰𝘮𝘦 𝘛𝘰 
-   │✑  ${metadata.subject}
-   │✑  𝘔𝘦𝘮𝘣𝘦𝘳 : 
-   │✑ ${xmembers} user
-   └───────────────┈ ⳹`
-let buttons = [
-{buttonId: `wkwwk`, buttonText: {displayText: 'Selamat Datang kak'}, type: 1}
-]
-let buttonMessage = {
-document: fs.readFileSync('./isman/theme/cheems.xlsx'),
-jpegThumbnail:XeonWlcm,
-mentions: [num],
-fileName: `${metadata.subject}`,
-fileLength: 6281337106240,
-caption: xeonbody,
-footer: `${isman.user.name}`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title: `${isman.user.name}`,
-body: `Jangan Lupa Baca deskripsi kak`,
-mediaType:2,
-thumbnail: XeonWlcm,
-}}
-}
-isman.sendMessage(anu.id, buttonMessage, {quoted:unicorndoc})
+                    isman.sendMessage(anu.id, { caption: teks1, location: { jpegThumbnail: await reSize(ppuser, 240, 240)}, buttons: butwel, footer: groupwa, mentions: [num] })
                 } else if (anu.action == 'remove') {
-                	const xeonbuffer = await getBuffer(ppuser)
-                	let xeonName = num
-                    const xeonmembers = metadata.participants.length
-                    let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: xeonbuffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                    xeonbody = `┌─❖
-│「 𝗚𝗼𝗼𝗱𝗯𝘆𝗲 👋 」
-└┬❖ 「 @${xeonName.split("@")[0]}  」
-   │✑  𝗟𝗲𝗳𝘁 
-   │✑ ${metadata.subject}
-   │✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
-   │✑ ${xeonmembers}User
-   └───────────────┈ ⳹`
-let buttons = [
-{buttonId: `wkwkwk`, buttonText: {displayText: 'Selamat Tinggal kak'}, type: 1}
-]
-let buttonMessage = {
-document: fs.readFileSync('./isman/theme/cheems.xlsx'),
-jpegThumbnail:XeonLft,
-mentions: [num],
-fileName: `${metadata.subject}`,
-fileLength: 6288972720297,
-caption: xeonbody,
-footer: `${isman.user.name}`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title: `${isman.user.name}`,
-body: `Bye Semoga Khusnul khatimah.`,
-mediaType:2,
-thumbnail: XeonLft,
-}}
-}
-isman.sendMessage(anu.id, buttonMessage, {quoted:unicorndoc})
-                }
+                    isman.sendMessage(anu.id, { caption: teks2, location: { jpegThumbnail: await reSize(ppuser, 240, 240)}, buttons: butleav, footer: groupwa, mentions: [num] })
+                } else if (anu.action == 'promote') {
+                    isman.sendMessage(anu.id, { caption: teks3, location: { jpegThumbnail: await reSize(ppuser, 240, 240)}, buttons: butselamat, footer: groupwa, mentions: [num] })
+                } else if (anu.action == 'demote') {
+                    isman.sendMessage(anu.id, { caption: teks4, location: { jpegThumbnail: await reSize(ppuser, 240, 240)}, buttons: butsebar, footer: groupwa, mentions: [num] })
+              }
             }
         } catch (err) {
             console.log(err)

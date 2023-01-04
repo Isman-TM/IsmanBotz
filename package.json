@@ -1,7 +1,7 @@
 {
   "name": "ISMAN-BOT",
   "version": "1.2.3",
-  "description": "WhatsApp bot 2022",
+  "description": 1,
   "main": "ismanofc.js",
   "type": "commonjs",
   "scripts": {
